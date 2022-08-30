@@ -112,11 +112,9 @@ return packer.startup(function(use)
     use {
         'folke/which-key.nvim',
         config = function()
-            require('which-key').setup({
-                window = {
-                    border = 'single',
-                },
-            })
+            require('which-key').setup{
+                window = { border = 'single' },
+            }
         end,
     }
 
@@ -124,9 +122,9 @@ return packer.startup(function(use)
     use {
         'ellisonleao/gruvbox.nvim',
         config = function()
-            require('gruvbox').setup({
+            require('gruvbox').setup{
                 italic = false,
-            })
+            }
             vim.cmd('colorscheme gruvbox')
         end,
     }
