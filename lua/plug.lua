@@ -96,6 +96,18 @@ return packer.startup(function(use)
         end,
     }
 
+    -- terminal stuff
+    use {
+        'akinsho/toggleterm.nvim',
+        tag = 'v2.*',
+        config = function()
+            require('toggleterm').setup{
+                open_mapping = [[<C-\>]],
+                direction = 'float',
+            }
+        end
+    }
+
     -- which key
     use {
         'folke/which-key.nvim',
