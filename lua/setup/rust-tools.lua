@@ -15,7 +15,7 @@ local opts = {
     -- rust-tools options
     tools = {
         inlay_hints = {
-            parameter_hints_prefix = '',
+            show_parameter_hints = false,
             other_hints_prefix = '',
         },
     },
@@ -36,11 +36,12 @@ local opts = {
                     -- default: `cargo check`
                     command = 'clippy',
                 },
-            },
-            inlayHints = {
-                lifetimeEllisionHints = {
-                    enable = true,
-                    useParameterNames = true,
+            -- },
+                inlayHints = {
+                    lifetimeEllisionHints = {
+                        enable = true,
+                        useParameterNames = true,
+                    },
                 },
             },
         },
