@@ -33,8 +33,8 @@ keymap('n', '<C-Down>', ':resize +2<CR>', opts)
 keymap('n', '<C-Left>', ':vertical resize -2<CR>', opts)
 keymap('n', '<C-Right>', ':vertical resize +2<CR>', opts)
 -- Navigate buffers
--- keymap('n', '<S-l>', ':bnext<CR>', opts)
--- keymap('n', '<S-h>', ':bprevious<CR>', opts)
+keymap('n', '<A-l>', ':bnext<CR>', opts)
+keymap('n', '<A-h>', ':bprevious<CR>', opts)
 -- Move text up and down
 keymap('n', '<A-j>', '<Esc>:m .+1<CR>==', opts)
 keymap('n', '<A-k>', '<Esc>:m .-2<CR>==', opts)
@@ -71,4 +71,5 @@ keymap('n', '<Leader>ff', '<Cmd>Telescope find_files<CR>', opts)
 keymap('n', '<Leader>fg', '<Cmd>Telescope live_grep<CR>', opts)
 keymap('n', '<Leader>fb', '<Cmd>Telescope buffers<CR>', opts)
 keymap('n', '<Leader>fh', '<Cmd>Telescope help_tags<CR>', opts)
+keymap('n', '<Leader>fs', '<Cmd>Telescope grep_string<CR>', opts)
 
