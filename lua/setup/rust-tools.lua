@@ -36,7 +36,6 @@ local opts = {
                     -- default: `cargo check`
                     command = 'clippy',
                 },
-            -- },
                 inlayHints = {
                     lifetimeEllisionHints = {
                         enable = true,

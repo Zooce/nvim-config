@@ -72,4 +72,5 @@ keymap('n', '<Leader>fg', '<Cmd>Telescope live_grep<CR>', opts)
 keymap('n', '<Leader>fb', '<Cmd>Telescope buffers<CR>', opts)
 keymap('n', '<Leader>fh', '<Cmd>Telescope help_tags<CR>', opts)
 keymap('n', '<Leader>fs', '<Cmd>Telescope grep_string<CR>', opts)
+keymap('n', '<Leader>fw', '<Cmd>lua require("telescope.builtin").grep_string({word_match="-w"})<CR>', opts)
 
