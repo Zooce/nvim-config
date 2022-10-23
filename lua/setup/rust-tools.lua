@@ -10,7 +10,7 @@ if not ok then
     return
 end
 
-local cap = lsp.update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local cap = lsp.default_capabilities(vim.lsp.protocol.make_client_capabilities())
 local opts = {
     -- rust-tools options
     tools = {
