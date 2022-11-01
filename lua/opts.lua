@@ -49,8 +49,8 @@ local options = {
     -- [[ Others ]]
     cmdheight = 2,          -- give more space in the command line
     showmode = false,       -- don't show the mode
-    timeoutlen = 300,       -- time before mapped key sequences fire  
-    updatetime = 300,       -- shorten the time to show pop-ups under the cursor
+    timeoutlen = 100,       -- time before mapped key sequences fire  
+    updatetime = 100,       -- shorten the time to show pop-ups under the cursor
     wrap = false,           -- don't wrap text
 }
 

@@ -39,7 +39,7 @@ keymap('n', '<A-h>', ':bprevious<CR>', opts)
 keymap('n', '<A-j>', '<Esc>:m .+1<CR>==', opts)
 keymap('n', '<A-k>', '<Esc>:m .-2<CR>==', opts)
 -- NvimTreeToggle
-keymap('n', '<Leader>e', ':NvimTreeToggle<CR>', opts)
+keymap('n', '<Leader>e', ':NvimTreeToggle<CR>', { noremap = true, silent = true, desc = 'Toggle File Tree' })
 
 -- Insert --
 
@@ -65,12 +65,4 @@ keymap('x', '<A-k>', ":move '<-2<CR>gv-gv", opts)
 -- keymap('t', '<C-j>', '<C-\\><C-N><C-w>j', term_opts)
 -- keymap('t', '<C-k>', '<C-\\><C-N><C-w>k', term_opts)
 -- keymap('t', '<C-l>', '<C-\\><C-N><C-w>l', term_opts)
-
--- Telescope
-keymap('n', '<Leader>ff', '<Cmd>Telescope find_files<CR>', opts)
-keymap('n', '<Leader>fg', '<Cmd>Telescope live_grep<CR>', opts)
-keymap('n', '<Leader>fb', '<Cmd>Telescope buffers<CR>', opts)
-keymap('n', '<Leader>fh', '<Cmd>Telescope help_tags<CR>', opts)
-keymap('n', '<Leader>fs', '<Cmd>Telescope grep_string<CR>', opts)
-keymap('n', '<Leader>fw', '<Cmd>lua require("telescope.builtin").grep_string({word_match="-w"})<CR>', opts)
 
