@@ -18,7 +18,7 @@ local opts = {
             only_current_line = true,
             show_parameter_hints = false,
             other_hints_prefix = '',
-            highlight = 'GruvboxBlue',
+            highlight = 'GruvboxBlue', -- run `:so $VIMRUNTIME/syntax/hitest.vim` to see all active highlight groups
         },
     },
 
@@ -38,10 +38,10 @@ local opts = {
                 cargo = {
                     fatures = 'all', 
                 },
-                checkOnSave = {
-                    -- default: `cargo check`
-                    command = 'clippy',
-                },
+                -- checkOnSave = {
+                --     -- default: `cargo check`
+                --     command = 'clippy',
+                -- },
                 -- inlayHints = {
                     -- enable = false,
                     -- lifetimeEllisionHints = {
