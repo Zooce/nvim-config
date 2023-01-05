@@ -52,6 +52,7 @@ local options = {
     timeoutlen = 100,       -- time before mapped key sequences fire  
     updatetime = 100,       -- shorten the time to show pop-ups under the cursor
     wrap = false,           -- don't wrap text
+    textwidth = 0,          -- don't auto linebreak while typing
 }
 
 
