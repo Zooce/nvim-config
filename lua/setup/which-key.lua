@@ -11,6 +11,7 @@ wk.register({
         s = { '<Cmd>Telescope lsp_workspace_symbols<CR>', 'Find Workspace Symbol' },
         r = { '<Cmd>Telescope lsp_references<CR>', 'Find References' },
         w = { '<Cmd>lua require("telescope.builtin").grep_string({word_match="-w"})<CR>', 'Find Word' },
+        c = { '<Cmd>Telescope git_status<CR>', 'Find Changes' }
     },
     ['<Leader>g'] = {
         name = '+goto',
