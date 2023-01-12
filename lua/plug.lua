@@ -40,7 +40,16 @@ return packer.startup(function(use)
     -- common (required by other plugins)
     use 'nvim-lua/plenary.nvim'
     use 'nvim-lua/popup.nvim'
+    
+    -- debugging
     use 'mfussenegger/nvim-dap'
+    use { 
+        'rcarriga/nvim-dap-ui',
+        requires = { 'mfussenegger/nvim-dap' },
+        config = function()
+            require('dapui').setup()
+        end,
+    }
 
     -- file explorer
     use {
