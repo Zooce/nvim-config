@@ -135,6 +135,10 @@ packer.startup(function(use)
         open_mapping = [[<C-\>]],
         direction = 'float',
       }
+      -- Windows can be weird (try this for example)
+      -- vim.o.shell = 'C:/Program Files/Git/git-bash.exe'
+      -- vim.o.shellcmdflag = '--login -i -c'
+      -- vim.o.shellxquote = ''
     end,
   }
 
@@ -305,24 +309,37 @@ cmp.setup {
       behavior = cmp.ConfirmBehavior.Replace,
       select = false,
     },
+    ['<Esc>'] = cmp.mapping.abort(),
     ['<Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
-      elseif luasnip.expand_or_jumpable() then
-        luasnip.expand_or_jump()
+      elseif luasnip.expandable() then
+        luasnip.expand {}
       else
         fallback()
       end
-    end, { 'i', 's' }),
+    end, { 'i' }),
+    ['<Tab>'] = cmp.mapping(function(fallback)
+      if luasnip.jumpable(1) then
+        luasnip.jump(1)
+      else
+        fallback()
+      end
+    end, { 's' }),
     ['<S-Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
-      elseif luasnip.jumpable(-1) then
+      else
+        fallback()
+      end
+    end, { 'i' }),
+    ['<S-Tab>'] = cmp.mapping(function(fallback)
+      if luasnip.jumpable(-1) then
         luasnip.jump(-1)
       else
         fallback()
       end
-    end, { 'i', 's' }),
+    end, { 's' }),
   },
   sources = {
     { name = 'nvim_lsp' },
