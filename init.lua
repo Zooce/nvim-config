@@ -8,35 +8,9 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
 end
 
 require 'defaults.opts'
+require 'defaults.keys'
 
--- General keymaps
-local nmap = function(keys, func, desc)
-  vim.keymap.set('n', keys, func, { noremap = true, silent = true, desc = desc })
-end
-nmap('<C-h>', '<C-w>h', 'Move left to the next window')
-nmap('<C-j>', '<C-w>j', 'Move down to the next window')
-nmap('<C-k>', '<C-w>k', 'Move up to the next window')
-nmap('<C-l>', '<C-w>l', 'Move right to the next window')
-nmap('<S-ScrollWheelUp>', '5z<Left>', 'Horizontal scroll left')
-nmap('<S-ScrollWheelDown>', '5z<Right>', 'Horizontal scroll right')
-nmap('<A-j>', ':m .+1<CR>==', 'Move line down')
-nmap('<A-k>', ':m .-2<CR>==', 'Move line up')
-nmap('[d', vim.diagnostic.goto_prev, 'Goto previous [d]iagnostic')
-nmap(']d', vim.diagnostic.goto_next, 'Goto next [d]iagnostic')
-nmap('<leader>e', vim.diagnostic.open_float, 'Open diagnostics float')
-
-local vmap = function(keys, func, desc)
-  vim.keymap.set('v', keys, func, { noremap = true, silent = true, desc = desc })
-end
-vmap('<', '<gv', 'Stay in indent mode after left indent')
-vmap('>', '>gv', 'Stay in indent mode after right indent')
-
-local xmap = function(keys, func, desc)
-  vim.keymap.set('x', keys, func, { noremap = true, silent = true, desc = desc })
-end
-
-vim.keymap.set({ 'v', 'x' }, '<A-j>', ":m '>+1<CR>gv=gv'", { noremap = true, silent = true, desc = 'Move selection down' })
-vim.keymap.set({ 'v', 'x' }, '<A-k>', ":m '<-2<CR>gv=gv'", { noremap = true, silent = true, desc = 'Move selection up' })
+local nmap = require('helpers').nmap
 
 local packer = require('packer')
 
