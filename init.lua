@@ -150,8 +150,6 @@ packer.startup(function(use)
     requires = {
       'nvim-lua/plenary.nvim',
     },
-    config = function()
-    end
   }
 
   use { -- Make fuzzy finder even faster (if possible)
