@@ -7,33 +7,7 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
   vim.cmd [[packadd packer.nvim]]
 end
 
--- Basic options
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
-vim.keymap.set({ 'n', 'v' }, '<space>', '<nop>', { silent = true })
-
-vim.o.clipboard = 'unnamedplus'
-vim.o.cursorline = true
-vim.o.number = true
-vim.o.relativenumber = true
-vim.o.scrolloff = 6
-vim.o.ignorecase = true
-vim.o.smartcase = true
-vim.o.hlsearch = false
-vim.o.incsearch = true
-vim.o.expandtab = true
-vim.o.shiftwidth = 4
-vim.o.tabstop = 4
-vim.o.softtabstop = 4
-vim.o.backup = false
-vim.o.writebackup = false
-vim.o.hidden = true
-vim.o.mouse = 'a'
-vim.o.wrap = false
-vim.o.updatetime = 250
-vim.o.timeoutlen = 250
-vim.o.completeopt = 'menuone,noinsert,noselect'
-vim.wo.signcolumn = 'yes'
+require 'defaults.opts'
 
 -- General keymaps
 local nmap = function(keys, func, desc)

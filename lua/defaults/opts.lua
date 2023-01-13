@@ -1,16 +1,18 @@
 -- [[ opts.lua ]]
 
+vim.g.background = "dark"
+
+-- https://github.com/rust-lang/rust.vim/blob/master/doc/rust.txt
+vim.g.rust_recommended_style = 0
+
 local options = {
     -- [[ Context ]]
-    colorcolumn = '80',     -- ruler
     cursorline = true,      -- highlight the current line
     number = true,          -- show line numbers
-    numberwidth = 5,        -- gutter size
     relativenumber = true,  -- show relative line numbers
-    scrolloff = 4,          -- always show at least 4 lines around the cursor
-    sidescrolloff = 4,      -- always show at least 4 characters around the cursor
-    signcolumn = 'yes',     -- show the sign column
-    --showtabline = 2,        -- always show the tab bar
+    scrolloff = 6,          -- always show at least 4 lines around the cursor
+    sidescrolloff = 6,      -- always show at least 4 characters around the cursor
+    signcolumn = 'yes',     -- show the sign column (TODO: should this be added to vim.wo ?)
 
     -- [[ Filetypes ]]
     encoding = 'utf-8',      -- string encoding
@@ -41,26 +43,28 @@ local options = {
     -- [[ Copy and Paste ]]
     clipboard = 'unnamedplus',  -- paste from the system clipboard
 
-    -- [[ Backups ]]
-    backup = false,
-    hidden = true,
-    writebackup = false,
+    -- [[ Autocomplete Menus ]]
+    -- show completions menus even when there's only one option
+    -- don't automatically select or insert completion menu options
+    completeopt = 'menuone,noinsert,noselect',
 
     -- [[ Others ]]
-    cmdheight = 2,          -- give more space in the command line
+    hidden = true,          -- allow hidden buffers (helpful for some plugins)
     showmode = false,       -- don't show the mode
-    timeoutlen = 100,       -- time before mapped key sequences fire  
-    updatetime = 100,       -- shorten the time to show pop-ups under the cursor
+    timeoutlen = 250,       -- time before mapped key sequences fire  
+    updatetime = 250,       -- shorten the time to show pop-ups under the cursor
     wrap = false,           -- don't wrap text
     textwidth = 0,          -- don't auto linebreak while typing
+    mouse = 'a',            -- allow the mouse in any mode
+
+    -- [[ Backups - see `:help backup` ]]
+    backup = false,
+    writebackup = false,
 }
 
-
---vim.opt.path:append '**'
-vim.opt.shortmess:append 'c'
-
+vim.opt.shortmess:append 'c'    -- don't show `ins-completion-menu` messages
 
 for k, v in pairs(options) do
-    vim.opt[k] = v
+    vim.o[k] = v
 end
 
