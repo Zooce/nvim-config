@@ -151,24 +151,6 @@ packer.startup(function(use)
       'nvim-lua/plenary.nvim',
     },
     config = function()
-      local telescope = require 'telescope'
-      telescope.setup {}
-      pcall(telescope.load_extension, 'fzf')
-      -- keymaps
-      local builtin = require 'telescope.builtin'
-      nmap('<leader>?', builtin.oldfiles, '[?] Find recently opened files')
-      nmap('<leader><space>', builtin.buffers, '[ ] Find existing buffers')
-      nmap('<leader>/', function()
-        builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
-          winblend = 10,
-          previewer = false,
-        })
-      end, '[/] Fuzzy search in current buffer')
-      nmap('<leader>sf', builtin.find_files, '[s]earch [f]iles')
-      nmap('<leader>sh', builtin.help_tags, '[s]earch [h]elp')
-      nmap('<leader>sw', builtin.grep_string, '[s]earch [w]ord')
-      nmap('<leader>sg', builtin.live_grep, '[s]earch [g]rep')
-      nmap('<leader>sd', builtin.diagnostics, '[s]earch [d]iagnostics')
     end
   }
 
@@ -231,6 +213,24 @@ if is_bootstrap then
 end
 
 -- Do the more complex plugin setup down here
+
+-- telescope stuff
+require('telescope').setup {}
+pcall(require('telescope').load_extension, 'fzf')
+local builtin = require 'telescope.builtin'
+nmap('<leader>?', builtin.oldfiles, '[?] Find recently opened files')
+nmap('<leader><space>', builtin.buffers, '[ ] Find existing buffers')
+nmap('<leader>/', function()
+  builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
+    winblend = 10,
+    previewer = false,
+  })
+end, '[/] Fuzzy search in current buffer')
+nmap('<leader>sf', builtin.find_files, '[s]earch [f]iles')
+nmap('<leader>sh', builtin.help_tags, '[s]earch [h]elp')
+nmap('<leader>sw', builtin.grep_string, '[s]earch [w]ord')
+nmap('<leader>sg', builtin.live_grep, '[s]earch [g]rep')
+nmap('<leader>sd', builtin.diagnostics, '[s]earch [d]iagnostics')
 
 -- tree-sitter stuff
 require('nvim-treesitter.configs').setup {
