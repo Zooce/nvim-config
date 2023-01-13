@@ -151,8 +151,8 @@ packer.startup(function(use)
       'nvim-lua/plenary.nvim',
     },
     config = function()
-      local telescope = require('telescope')
-      telescope.setup{}
+      local telescope = require 'telescope'
+      telescope.setup {}
       pcall(telescope.load_extension, 'fzf')
       -- keymaps
       local builtin = require 'telescope.builtin'
