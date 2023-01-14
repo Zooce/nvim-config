@@ -210,6 +210,18 @@ local plugin_specs = {
             }
         end
     },
+    { -- Floating terminal
+        spec = {
+            'akinsho/toggleterm.nvim',
+            tag = '*',
+        },
+        setup = function()
+            require('toggleterm').setup{
+                open_mapping = [[<C-\>]],
+                direction = 'float',
+            }
+        end,
+    },
     { -- Comment toggling
         spec = 'numToStr/Comment.nvim',
         setup = function()
@@ -259,4 +271,3 @@ for _, v in pairs(plugin_specs) do
         v.setup()
     end
 end
-
