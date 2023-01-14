@@ -28,7 +28,9 @@ local plugin_specs = {
             },
         },
         setup = function()
-            require('mason').setup{}
+            require('mason').setup{
+                ui = { border = 'rounded' },
+            }
 
             -- put other LSP servers you want here
             local servers = {
@@ -232,7 +234,7 @@ local packer = require 'packer'
 packer.init {
     display = {
         open_fn = function()
-            return require('packer.util').float {}
+            return require('packer.util').float{ border = 'rounded' }
         end,
     },
 }
