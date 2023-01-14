@@ -255,6 +255,9 @@ local plugin_specs = {
     },
     -- TODOs
     -- tpope/vim-fugitive
+    -- tpope/vim-sleuth
+    -- folke/neodev.nvim
+    -- lukas-reineke/indent-blankline.nvim
 }
 
 -- Packer init/startup
@@ -287,3 +290,4 @@ for _, v in pairs(plugin_specs) do
         v.setup()
     end
 end
+
