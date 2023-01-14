@@ -243,6 +243,16 @@ local plugin_specs = {
             vim.cmd [[colorscheme gruvbox]]
         end,
     },
+    { -- Rust Cargo.toml helper
+        spec = {
+            'saecki/crates.nvim',
+            event = { 'BufRead Cargo.toml' }, -- trigger when we open a Crates.toml file
+            requires = { { 'nvim-lua/plenary.nvim' } },
+        },
+        setup = function()
+            require('crates').setup{}
+        end,
+    },
     -- TODOs
     -- tpope/vim-fugitive
 }
