@@ -18,6 +18,7 @@ helpers.nmap('<A-k>', ':m .-2<CR>==', 'Move line up')
 helpers.nmap('[d', vim.diagnostic.goto_prev, 'Goto previous [d]iagnostic')
 helpers.nmap(']d', vim.diagnostic.goto_next, 'Goto next [d]iagnostic')
 helpers.nmap('<leader>e', vim.diagnostic.open_float, 'Open diagnostics float')
+helpers.nmap('<leader>q', vim.diagnostic.setloclist, 'Place diagnostics in the location list')
 
 helpers.vmap('<', '<gv', 'Stay in indent mode after left indent')
 helpers.vmap('>', '>gv', 'Stay in indent mode after right indent')
