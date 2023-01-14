@@ -214,6 +214,14 @@ local plugin_specs = {
             require('Comment').setup{}
         end,
     },
+    { -- Colorscheme
+        spec = 'ellisonleao/gruvbox.nvim',
+        setup = function()
+            require('gruvbox').setup{
+                italic = false,
+            }
+        end,
+    },
     -- TODOs
     -- tpope/vim-fugitive
 }
