@@ -147,6 +147,10 @@ local plugin_specs = {
             }
         end,
     },
+    { -- Additional text objects via treesitter
+        'nvim-treesitter/nvim-treesitter-textobjects',
+        after = 'nvim-treesitter',
+    },
     { -- Fuzzy finder
         spec = {
             'nvim-telescope/telescope.nvim',
@@ -183,4 +187,54 @@ local plugin_specs = {
             cond = vim.fn.executable 'make' == 1,
         },
     },
+    { -- Git status indicators
+        spec = 'lewis6991/gitsigns.nvim',
+        setup = function()
+            require 'gitsigns'
+        end,
+    },
+    { -- Status line
+        spec = 'nvim-lualine/lualine.nvim',
+        setup = function()
+            require('lualine').setup {
+                options = {
+                    icons_enabled = false,
+                    component_separators = '|',
+                    section_separators = '',
+                },
+            }
+        end
+    },
+    { -- Comment toggling
+        spec = 'numToStr/Comment.nvim',
+        setup = function()
+            require('Comment').setup{}
+        end,
+    },
+    -- TODOs
+    -- tpope/vim-fugitive
 }
+
+-- Packer init/startup
+local packer = require 'packer'
+packer.init {
+    display = {
+        open_fn = function()
+            return require('packer.util').float {}
+        end,
+    },
+}
+packer.startup(function(use)
+    for _, v in pairs(plugin_specs) do
+        use(v.spec)
+    end
+    if is_bootstrap then
+        require('packer').sync()
+    end
+end)
+
+-- Plugin setup functions
+for _, v in pairs(plugin_specs) do
+    v.setup()
+end
+
