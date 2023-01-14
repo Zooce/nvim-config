@@ -220,6 +220,7 @@ local plugin_specs = {
             require('gruvbox').setup{
                 italic = false,
             }
+            vim.cmd [[colorscheme gruvbox]]
         end,
     },
     -- TODOs
