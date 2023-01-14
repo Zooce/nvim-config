@@ -148,8 +148,10 @@ local plugin_specs = {
         end,
     },
     { -- Additional text objects via treesitter
-        'nvim-treesitter/nvim-treesitter-textobjects',
-        after = 'nvim-treesitter',
+        spec = {
+            'nvim-treesitter/nvim-treesitter-textobjects',
+            after = 'nvim-treesitter',
+        },
     },
     { -- Fuzzy finder
         spec = {
