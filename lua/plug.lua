@@ -47,7 +47,8 @@ local plugin_specs = {
 
             local mason_config = require 'mason-lspconfig'
             mason_config.setup {
-                ensure_installed = vim.tbl_keys(servers)
+                ensure_installed = vim.tbl_keys(servers),
+                automatic_installation = true,
             }
             mason_config.setup_handlers {
                 function(server)
@@ -192,7 +193,7 @@ local plugin_specs = {
     { -- Git status indicators
         spec = 'lewis6991/gitsigns.nvim',
         setup = function()
-            require 'gitsigns'
+            require('gitsigns').setup{}
         end,
     },
     { -- Status line
