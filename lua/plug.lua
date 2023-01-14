@@ -248,7 +248,8 @@ packer.startup(function(use)
 end)
 
 if is_bootstrap then
-    print 'Run `:PackerInstall` and restart nvim'
+    print 'We bootstrapped packer this time so you need to restart Neovim to get things going.'
+    print 'You might also want to run `:Mason` after you restart to make sure your LSP servers are able to be installed.'
     return
 end
 
