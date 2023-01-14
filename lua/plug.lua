@@ -235,6 +235,11 @@ packer.startup(function(use)
     end
 end)
 
+if is_bootstrap then
+    print 'Run `:PackerInstall` and restart nvim'
+    return
+end
+
 -- Plugin setup functions
 for _, v in pairs(plugin_specs) do
     if v.setup ~= nil then
