@@ -222,6 +222,12 @@ local plugin_specs = {
             }
         end,
     },
+    { -- Show dynamic keymap help
+        spec = 'folke/which-key.nvim',
+        config = function()
+            require('which-key').setup{}
+        end,
+    },
     { -- Comment toggling
         spec = 'numToStr/Comment.nvim',
         setup = function()
