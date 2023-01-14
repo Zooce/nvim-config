@@ -235,6 +235,8 @@ end)
 
 -- Plugin setup functions
 for _, v in pairs(plugin_specs) do
-    v.setup()
+    if v.setup ~= nil then
+        v.setup()
+    end
 end
 
