@@ -1,7 +1,4 @@
--- [[ auto.lua ]]
-
--- [[ Highlight on yank ]]
--- See `:help vim.highlight.on_yank()`
+-- Highlight yanked text -- credit to https://github.com/nvim-lua/kickstart.nvim
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
 vim.api.nvim_create_autocmd('TextYankPost', {
   callback = function()
@@ -10,4 +7,3 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   group = highlight_group,
   pattern = '*',
 })
-

@@ -1,10 +1,5 @@
--- [[ keys.lua ]]
-
 local helpers = require 'helpers'
 
--- Remap space as leader key
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
 vim.keymap.set({ 'n', 'v' }, '<space>', '<nop>', { silent = true })
 
 helpers.nmap('<C-h>', '<C-w>h', 'Move left to the next window')
@@ -19,6 +14,7 @@ helpers.nmap('[d', vim.diagnostic.goto_prev, 'Goto previous [d]iagnostic')
 helpers.nmap(']d', vim.diagnostic.goto_next, 'Goto next [d]iagnostic')
 helpers.nmap('<leader>e', vim.diagnostic.open_float, 'Open diagnostics float')
 helpers.nmap('<leader>q', vim.diagnostic.setloclist, 'Place diagnostics in the location list')
+helpers.nmap('<leader><del>', ':%s/\\s\\+$//e<CR>', 'Remove trailing whitespace')
 
 helpers.vmap('<', '<gv', 'Stay in indent mode after left indent')
 helpers.vmap('>', '>gv', 'Stay in indent mode after right indent')

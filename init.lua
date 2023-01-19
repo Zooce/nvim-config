@@ -1,5 +1,29 @@
-require 'defaults.opts'
-require 'defaults.keys'
-require 'defaults.auto'
-require 'plug'
+-- [[ Bootstrap lazy.nvim ]]
+local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    'git',
+    'clone',
+    '--filter=blob:none',
+    'https://github.com/folke/lazy.nvim.git',
+    '--branch=stable', -- latest stable release
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
 
+require('config.options')
+require('config.keymaps')
+require('config.autocmds')
+
+-- [[ Start lazy.nvim ]]
+require('lazy').setup({
+  spec = {
+    { import = 'plugins' }, -- load all plugin modules from `lua/plugins'
+  },
+  defaults = {
+    version = '*', -- try to keep all plugins up to their latest stable version
+  },
+  checker = { enabled = true }, -- automatically check for plugin updates
+  -- TODO: consider disabling some rtp plugins (see https://github.com/LazyVim/starter/blob/main/lua/config/lazy.lua)
+})
