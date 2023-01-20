@@ -35,6 +35,12 @@ return {
                 open_mapping = [[<C-\>]],
                 direction = 'float',
             }
+            -- EXPERIMENTAL: try to get this working on Windows
+            if vim.loop.os_uname().sysname == 'Windows' then
+                -- might also need to set `vim.o.shell = '<path to shell>'`
+                -- and `vim.o.shellcmdflag = '<shell args like --login -i -c>'`
+                vim.o.shellxquote = ''
+            end
         end,
     },
     { -- status line
