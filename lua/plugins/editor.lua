@@ -76,5 +76,8 @@ return {
             }
         end,
     },
+    { -- auto detect indentation
+        'tpope/vim-sleuth',
+    },
     -- TODO: consider https://github.com/folke/noice.nvim
 }
