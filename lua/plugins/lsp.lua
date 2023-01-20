@@ -19,7 +19,6 @@ return {
                 rust_analyzer = {},
                 sumneko_lua = { -- see https://github.com/sumneko/lua-language-server/wiki/Settings
                     Lua = {
-                        -- diagnostics = { globals = { 'vim' } },
                         workspace = { checkThirdParty = false },
                         telemetry = { enable = false },
                     },
