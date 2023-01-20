@@ -12,7 +12,7 @@ return {
         config = function()
             -- learned this from kickstart.nvim (TODO: put the github URL here)
             require('nvim-treesitter.configs').setup {
-                ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'javascript', 'typescript', 'help', 'vim', 'zig' },
+                -- ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'javascript', 'typescript', 'help', 'vim', 'zig' },
                 highlight = { enable = true },
                 indent = { enable = true },
                 incremental_selection = {
