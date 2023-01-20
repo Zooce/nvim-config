@@ -36,7 +36,7 @@ return {
                 direction = 'float',
             }
             -- EXPERIMENTAL: try to get this working on Windows
-            if vim.loop.os_uname().sysname == 'Windows' then
+            if vim.loop.os_uname().sysname == 'Windows_NT' then
                 -- might also need to set `vim.o.shell = '<path to shell>'`
                 -- and `vim.o.shellcmdflag = '<shell args like --login -i -c>'`
                 vim.o.shellxquote = ''
