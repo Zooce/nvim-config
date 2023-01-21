@@ -12,7 +12,6 @@ helpers.nmap('<A-j>', ':m .+1<CR>==', 'Move line down')
 helpers.nmap('<A-k>', ':m .-2<CR>==', 'Move line up')
 helpers.nmap('[d', vim.diagnostic.goto_prev, 'Goto previous [d]iagnostic')
 helpers.nmap(']d', vim.diagnostic.goto_next, 'Goto next [d]iagnostic')
-helpers.nmap('<leader>e', vim.diagnostic.open_float, 'Open diagnostics float')
 helpers.nmap('<leader>q', vim.diagnostic.setloclist, 'Place diagnostics in the location list')
 helpers.nmap('<leader><del>', ':%s/\\s\\+$//e<CR>', 'Remove trailing whitespace')
 
