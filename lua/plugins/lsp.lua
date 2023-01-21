@@ -44,8 +44,8 @@ return {
                 lnmap('<leader>ca', vim.lsp.buf.code_action, '[c]ode[a]ction')
                 lnmap('gd', telescope.lsp_definitions, '[g]oto [d]efinition')
                 lnmap('gr', telescope.lsp_references, '[g]oto [r]eferences')
-                lnmap('<leader>ds', telescope.lsp_document_symbols, '[d]ocument [s]ymbols')
-                lnmap('<leader>ws', telescope.lsp_dynamic_workspace_symbols, '[w]orkspace [s]ymbols')
+                lnmap('<leader>/d', telescope.lsp_document_symbols, 'Search document symbols')
+                lnmap('<leader>/w', telescope.lsp_dynamic_workspace_symbols, 'Search workspace symbols')
                 lnmap('K', vim.lsp.buf.hover, 'Hover documentation')
                 lnmap('<C-k>', vim.lsp.buf.signature_help, 'Signature documentation')
 
