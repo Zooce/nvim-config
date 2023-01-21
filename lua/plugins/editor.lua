@@ -2,10 +2,12 @@ return {
     { -- show git status marks
         'lewis6991/gitsigns.nvim',
         config = true,
+        event = 'BufRead',
     },
     { -- show available keymaps
         'folke/which-key.nvim',
         config = true,
+        event = 'VeryLazy',
     },
     { -- colorscheme
         'ellisonleao/gruvbox.nvim',
@@ -42,6 +44,7 @@ return {
                 vim.o.shellxquote = ''
             end
         end,
+        event = 'VeryLazy',
     },
     { -- status line
         'nvim-lualine/lualine.nvim',
@@ -75,9 +78,11 @@ return {
                 show_current_context = true,
             }
         end,
+        event = 'BufRead',
     },
     { -- auto detect indentation
         'tpope/vim-sleuth',
+        event = 'BufRead',
     },
     -- TODO: consider https://github.com/folke/noice.nvim
 }

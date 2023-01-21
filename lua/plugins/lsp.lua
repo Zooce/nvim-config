@@ -68,6 +68,7 @@ return {
     { -- Lua LSP for Neovim config
         'folke/neodev.nvim',
         config = true,
+        event = 'VeryLazy',
     },
     { -- LSP status
         'j-hui/fidget.nvim',

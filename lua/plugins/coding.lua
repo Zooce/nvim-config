@@ -2,6 +2,7 @@ return {
     { -- comment toggling
         'numToStr/Comment.nvim',
         config = true,
+        event = 'BufRead',
     },
     { -- language awareness
         'nvim-treesitter/nvim-treesitter',
