@@ -72,6 +72,12 @@ return {
     },
     { -- LSP status
         'j-hui/fidget.nvim',
-        config = true,
+        config = function()
+            require('fidget').setup{
+                text = {
+                    spinner = 'dots',
+                },
+            }
+        end,
     },
 }
