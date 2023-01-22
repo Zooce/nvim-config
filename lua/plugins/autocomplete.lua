@@ -7,6 +7,7 @@ return {
             'hrsh7th/cmp-path',
             'L3MON4D3/LuaSnip',
             'saadparwaiz1/cmp_luasnip',
+            'saecki/crates.nvim',
         },
         config = function()
             local has_words_before = function()
@@ -58,6 +59,7 @@ return {
                     { name = 'luasnip' },
                     { name = 'buffer' },
                     { name = 'path' },
+                    { name = 'crates' },
                 },
             }
         end,
