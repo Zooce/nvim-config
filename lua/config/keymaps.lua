@@ -14,6 +14,7 @@ helpers.nmap('[d', vim.diagnostic.goto_prev, 'Goto previous [d]iagnostic')
 helpers.nmap(']d', vim.diagnostic.goto_next, 'Goto next [d]iagnostic')
 helpers.nmap('<leader>q', vim.diagnostic.setloclist, 'Place diagnostics in the location list')
 helpers.nmap('<leader><del>', ':%s/\\s\\+$//e<CR>', 'Remove trailing whitespace')
+helpers.nmap('<leader>gl', '^vg_', 'Visual select current line content')
 
 helpers.vmap('p', '"_dP', 'Keep clipboard after pasting over a selection')
 helpers.vmap('<', '<gv', 'Stay in indent mode after left indent')
