@@ -24,7 +24,11 @@ require('lazy').setup({
   defaults = {
     version = '*', -- try to keep all plugins up to their latest stable version
   },
-  checker = { enabled = true }, -- automatically check for plugin updates
+  checker = {
+    enabled = true, -- automatically check for plugin updates
+    notify = false, -- no need to notify
+  },
+  change_detection = { enabled = false },
   -- TODO: consider disabling some rtp plugins (see https://github.com/LazyVim/starter/blob/main/lua/config/lazy.lua)
 })
 
