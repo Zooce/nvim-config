@@ -86,3 +86,5 @@ return {
     },
     -- TODO: consider https://github.com/folke/noice.nvim
 }
+
+-- vim: ts=2 sts=2 sw=2 et

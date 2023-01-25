@@ -27,3 +27,5 @@ require('lazy').setup({
   checker = { enabled = true }, -- automatically check for plugin updates
   -- TODO: consider disabling some rtp plugins (see https://github.com/LazyVim/starter/blob/main/lua/config/lazy.lua)
 })
+
+-- vim: ts=2 sts=2 sw=2 et
