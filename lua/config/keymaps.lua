@@ -1,6 +1,8 @@
 local helpers = require 'helpers'
 
 vim.keymap.set({ 'n', 'v' }, '<space>', '<nop>', { silent = true })
+vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 
 helpers.nmap('<C-h>', '<C-w>h', 'Move left to the next window')
 helpers.nmap('<C-j>', '<C-w>j', 'Move down to the next window')
