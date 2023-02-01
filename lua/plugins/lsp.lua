@@ -1,6 +1,7 @@
 return {
   { -- LSP management and configuration
     'williamboman/mason.nvim',
+    event = 'VeryLazy',
     dependencies = {
       'williamboman/mason-lspconfig.nvim',
       'neovim/nvim-lspconfig',
@@ -67,11 +68,12 @@ return {
   },
   { -- Lua LSP for Neovim config
     'folke/neodev.nvim',
-    config = true,
     event = 'VeryLazy',
+    config = true,
   },
   { -- LSP status
     'j-hui/fidget.nvim',
+    event = 'BufRead',
     config = function()
       require('fidget').setup {
         text = {

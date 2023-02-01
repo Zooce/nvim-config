@@ -49,8 +49,8 @@ local options = {
   -- [[ Others ]]
   hidden = true, -- allow hidden buffers (helpful for some plugins)
   showmode = false, -- don't show the mode
-  timeoutlen = 250, -- time before mapped key sequences fire
-  updatetime = 250, -- shorten the time to show pop-ups under the cursor
+  timeoutlen = 300, -- time before mapped key sequences fire
+  updatetime = 300, -- shorten the time to show pop-ups under the cursor
   wrap = false, -- don't wrap text
   textwidth = 0, -- don't auto linebreak while typing
   mouse = 'a', -- allow the mouse in any mode

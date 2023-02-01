@@ -1,16 +1,21 @@
 return {
   { -- show git status marks
     'lewis6991/gitsigns.nvim',
-    config = true,
     event = 'BufRead',
+    config = true,
   },
   { -- show available keymaps
     'folke/which-key.nvim',
-    config = true,
     event = 'VeryLazy',
+    config = function()
+      vim.o.timeout = true
+      vim.o.timeoutlen = 300
+      require('which-key').setup{}
+    end,
   },
   { -- colorscheme
     'ellisonleao/gruvbox.nvim',
+    lazy = false,
     priority = 1000, -- be one of the first to load
     config = function()
       local palette = require 'gruvbox.palette'
@@ -32,25 +37,23 @@ return {
   },
   { -- terminal
     'akinsho/toggleterm.nvim',
+    event = 'VeryLazy',
+    enabled = function()
+      return vim.loop.os_uname().sysname ~= 'Windows_NT'
+    end,
     config = function()
       require('toggleterm').setup {
         open_mapping = [[<C-\>]],
         direction = 'float',
       }
-      -- EXPERIMENTAL: try to get this working on Windows
-      if vim.loop.os_uname().sysname == 'Windows_NT' then
-        -- might also need to set `vim.o.shell = '<path to shell>'`
-        -- and `vim.o.shellcmdflag = '<shell args like --login -i -c>'`
-        vim.o.shellxquote = ''
-      end
     end,
-    event = 'VeryLazy',
   },
   { -- status line
     'nvim-lualine/lualine.nvim',
     config = function()
       require('lualine').setup {
         options = {
+          theme = 'gruvbox',
           icons_enabled = false,
           component_separators = '.',
           section_separators = '',
@@ -73,16 +76,16 @@ return {
   },
   { -- show indent guides
     'lukas-reineke/indent-blankline.nvim',
+    event = 'BufRead',
     config = function()
       require('indent_blankline').setup {
         show_current_context = true,
       }
     end,
-    event = 'BufRead',
   },
   { -- auto detect indentation
     'tpope/vim-sleuth',
-    event = 'BufRead',
+    event = 'BufReadPre',
   },
   -- TODO: consider https://github.com/folke/noice.nvim
 }
