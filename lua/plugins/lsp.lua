@@ -18,11 +18,28 @@ return {
       local servers = {
         pyright = {},
         rust_analyzer = {},
-        sumneko_lua = { -- see https://github.com/sumneko/lua-language-server/wiki/Settings
+        -- Lua LSP resources:
+        -- * https://github.com/neovim/nvim-lspconfig/blob/master/lua/lspconfig/server_configurations/lua_ls.lua
+        -- * https://github.com/LuaLS/lua-language-server/wiki/Settings
+        lua_ls = {
           Lua = {
-            workspace = { checkThirdParty = false },
-            telemetry = { enable = false },
-          },
+            runtime = {
+              -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+              version = 'LuaJIT',
+            },
+            diagnostics = {
+              -- Get the language server to recognize the `vim` global
+              globals = {'vim'},
+            },
+            workspace = {
+              -- Make the server aware of Neovim runtime files
+              library = vim.api.nvim_get_runtime_file("", true),
+            },
+            -- Do not send telemetry data containing a randomized but unique identifier
+            telemetry = {
+              enable = false,
+            },
+          }, 
         },
       }
 
@@ -68,7 +85,7 @@ return {
   },
   { -- Lua LSP for Neovim config
     'folke/neodev.nvim',
-    event = 'VeryLazy',
+    -- event = 'VeryLazy',
     config = true,
   },
   { -- LSP status

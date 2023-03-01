@@ -13,8 +13,17 @@ return {
       require('which-key').setup{}
     end,
   },
+  {
+    'jesseleite/nvim-noirbuddy',
+    dependencies = { 'tjdevries/colorbuddy.nvim' },
+    enabled = false,
+    lazy = false,
+    priority = 1000,
+    config = true,
+  },
   { -- colorscheme
     'ellisonleao/gruvbox.nvim',
+    enabled = true,
     lazy = false,
     priority = 1000, -- be one of the first to load
     config = function()
@@ -50,10 +59,13 @@ return {
   },
   { -- status line
     'nvim-lualine/lualine.nvim',
+    lazy = false,
+    priority = 999,
     config = function()
+      -- local noir = require('noirbuddy.plugins.lualine')
       require('lualine').setup {
         options = {
-          theme = 'gruvbox',
+          -- theme = noir.theme,
           icons_enabled = false,
           component_separators = '.',
           section_separators = '',
