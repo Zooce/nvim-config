@@ -1,5 +1,6 @@
 return {
-  { -- LSP management and configuration
+  {
+    -- LSP management and configuration
     'williamboman/mason.nvim',
     event = 'VeryLazy',
     dependencies = {
@@ -29,7 +30,7 @@ return {
             },
             diagnostics = {
               -- Get the language server to recognize the `vim` global
-              globals = {'vim'},
+              globals = { 'vim' },
             },
             workspace = {
               -- Make the server aware of Neovim runtime files
@@ -39,7 +40,7 @@ return {
             telemetry = {
               enable = false,
             },
-          }, 
+          },
         },
       }
 
@@ -83,12 +84,14 @@ return {
       }
     end,
   },
-  { -- Lua LSP for Neovim config
+  {
+    -- Lua LSP for Neovim config
     'folke/neodev.nvim',
     -- event = 'VeryLazy',
     config = true,
   },
-  { -- LSP status
+  {
+    -- LSP status
     'j-hui/fidget.nvim',
     event = 'BufRead',
     config = function()

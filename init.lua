@@ -21,9 +21,6 @@ require('lazy').setup({
   spec = {
     { import = 'plugins' }, -- load all plugin modules from `lua/plugins'
   },
-  defaults = {
-    version = '*', -- try to keep all plugins up to their latest stable version
-  },
   checker = {
     enabled = true, -- automatically check for plugin updates
     notify = false, -- no need to notify
