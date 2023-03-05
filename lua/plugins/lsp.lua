@@ -18,7 +18,9 @@ return {
       -- put other LSP servers you want here
       local servers = {
         pyright = {},
-        rust_analyzer = {},
+        rust_analyzer = {
+          procMacro = { enable = true },
+        },
         -- Lua LSP resources:
         -- * https://github.com/neovim/nvim-lspconfig/blob/master/lua/lspconfig/server_configurations/lua_ls.lua
         -- * https://github.com/LuaLS/lua-language-server/wiki/Settings
