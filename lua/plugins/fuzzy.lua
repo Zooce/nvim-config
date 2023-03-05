@@ -25,6 +25,7 @@ return {
       nmap('<leader>/f', builtin.find_files, 'Search files')
       nmap('<leader>/g', builtin.live_grep, 'Search grep')
       nmap('<leader>/e', builtin.diagnostics, 'Search diagnostics')
+      nmap('<leader>/w', builtin.grep_string, 'Search word')
     end
   },
   { -- help telescope order its results
