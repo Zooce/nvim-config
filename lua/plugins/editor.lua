@@ -33,6 +33,7 @@ return {
         fg = palette.dark0_hard,
       }
       require('gruvbox').setup {
+        bold = false,
         italic = false,
         inverse = false,
         overrides = {
@@ -67,7 +68,7 @@ return {
         options = {
           -- theme = noir.theme,
           icons_enabled = false,
-          component_separators = '.',
+          component_separators = '',
           section_separators = '',
         },
         sections = {
