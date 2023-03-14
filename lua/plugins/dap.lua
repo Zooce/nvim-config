@@ -47,6 +47,7 @@ return {
       dap.listeners.before.event_exited['dapui_config'] = function()
         dapui.close {}
       end
+      dnmap('<F9>', dapui.toggle, 'Toggle DAP UI')
     end,
   },
   {
