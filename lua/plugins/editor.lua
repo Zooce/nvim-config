@@ -101,6 +101,7 @@ return {
     event = 'BufReadPre',
   },
   -- TODO: consider https://github.com/folke/noice.nvim
+  -- TODO: considerhttps://github.com/natecraddock/workspaces.nvim 
 }
 
 -- vim: ts=2 sts=2 sw=2 et
