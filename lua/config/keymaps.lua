@@ -26,4 +26,8 @@ helpers.keymap({ 'v', 'x' }, '<A-k>', ":m '<-2<CR>gv=gv", 'Move selection up')
 helpers.keymap({ 'n', 'v' }, '<S-ScrollWheelUp>', '5z<Left>', 'Horizontal scroll left')
 helpers.keymap({ 'n', 'v' }, '<S-ScrollWheelDown>', '5z<Right>', 'Horizontal scroll right')
 
+if vim.loop.os_uname().sysname ~= 'Windows_NT' then
+  helpers.nmap('<C-\\>', ':terminal<CR>i', 'Open the terminal')
+  helpers.keymap('t', '<C-\\>', '<C-\\><C-N>:q', 'Close the terminal')
+end
 -- vim: ts=2 sts=2 sw=2 et
