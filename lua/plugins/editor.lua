@@ -48,14 +48,12 @@ return {
   { -- terminal
     'akinsho/toggleterm.nvim',
     event = 'VeryLazy',
-    -- enabled = function()
-    --   return vim.loop.os_uname().sysname ~= 'Windows_NT'
-    -- end,
     config = function()
       require('toggleterm').setup {
         open_mapping = [[<C-\>]],
         direction = 'float',
       }
+      -- on Windows this doesn't seem to work with GitBash
     end,
   },
   { -- status line
