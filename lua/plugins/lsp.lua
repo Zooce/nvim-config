@@ -18,7 +18,7 @@ return {
       -- put other LSP servers you want here
       local servers = {
         pyright = {},
-        rust_analyzer = {
+        ['rust_analyzer@nightly'] = {
           procMacro = { enable = true },
         },
         -- Lua LSP resources:
