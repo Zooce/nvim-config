@@ -22,6 +22,7 @@ helpers.vmap('>', '>gv', 'Stay in indent mode after right indent')
 
 helpers.keymap({ 'v', 'x' }, '<A-j>', ":m '>+1<CR>gv=gv", 'Move selection down')
 helpers.keymap({ 'v', 'x' }, '<A-k>', ":m '<-2<CR>gv=gv", 'Move selection up')
+helpers.keymap({ 'v', 'x' }, '<leader>s', ':!sort<CR>', 'Sort lines')
 
 helpers.keymap({ 'n', 'v' }, '<S-ScrollWheelUp>', '5z<Left>', 'Horizontal scroll left')
 helpers.keymap({ 'n', 'v' }, '<S-ScrollWheelDown>', '5z<Right>', 'Horizontal scroll right')
