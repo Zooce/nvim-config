@@ -13,6 +13,7 @@ helpers.nmap('<A-k>', ':m .-2<CR>==', 'Move line up')
 helpers.nmap('[e', vim.diagnostic.goto_prev, 'Goto previous diagnostic')
 helpers.nmap(']e', vim.diagnostic.goto_next, 'Goto next diagnostic')
 helpers.nmap('<leader>q', vim.diagnostic.setloclist, 'Place diagnostics in the location list')
+helpers.nmap('<leader>e', vim.diagnostic.open_float, 'Open diagnostics float')
 helpers.nmap('<leader><del>', ':%s/\\s\\+$//e<CR>', 'Remove trailing whitespace')
 helpers.nmap('<leader>gl', '^vg_', 'Visual select current line content')
 
