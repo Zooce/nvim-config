@@ -63,7 +63,7 @@ return {
         -- keymaps for LSP attached buffers (Telescope gives us extra goodies)
         local telescope = require 'telescope.builtin'
         lnmap('<leader>rn', vim.lsp.buf.rename, '[r]e[n]ame')
-        lnmap('<leader>ca', vim.lsp.buf.code_action, '[c]ode[a]ction')
+        lnmap('<leader>.', vim.lsp.buf.code_action, '[c]ode[a]ction')
         lnmap('gd', telescope.lsp_definitions, '[g]oto [d]efinition')
         lnmap('<leader>/r', telescope.lsp_references, 'Search references')
         lnmap('<leader>/sd', telescope.lsp_document_symbols, 'Search document symbols')
