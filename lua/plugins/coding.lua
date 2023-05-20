@@ -4,6 +4,10 @@ return {
     config = true,
     event = 'BufRead',
   },
+  { -- surround
+    'tpope/vim-surround',
+    event = 'BufRead',
+  },
   { -- language awareness
     'nvim-treesitter/nvim-treesitter',
     event = 'BufRead',
