@@ -1,12 +1,20 @@
 return {
   { -- comment toggling
     'numToStr/Comment.nvim',
-    config = true,
+    dependencies = {
+      'JoosepAlviste/nvim-ts-context-commentstring',
+    },
+    config = function()
+      require('Comment').setup({
+        pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
+      })
+    end,
     event = 'BufRead',
   },
   { -- surround
     'tpope/vim-surround',
     event = 'BufRead',
+    dependencies = { 'tpope/vim-repeat' },
   },
   { -- language awareness
     'nvim-treesitter/nvim-treesitter',
@@ -28,6 +36,25 @@ return {
             scope_incremental = '<S-CR>',
             node_decremental = '<BS>',
           },
+        },
+        ensure_installed = {
+          'bash',
+          'c', 'comment', 'cpp', 'css',
+          'git_config', 'git_rebase', 'gitattributes', 'gitcommit', 'gitignore',
+          'html', 'http',
+          'java', 'javascript', 'jsdoc', 'json', 'json5', 'jsonc',
+          'lua',
+          'markdown', 'markdown_inline',
+          'python',
+          'ron', 'rust',
+          'scss', 'sql', 'svelte',
+          'toml', 'tsx', 'typescript',
+          'vim',
+          'yaml',
+          'zig',
+        },
+        context_commentstring = {
+          enable = true,
         },
         -- textobjects = {
         --     select = {

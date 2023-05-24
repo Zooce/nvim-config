@@ -61,6 +61,8 @@ local options = {
 }
 
 vim.opt.shortmess:append 'c' -- don't show `ins-completion-menu` messages
+vim.opt.list = true
+vim.opt.listchars = { trail = '-' }
 
 for k, v in pairs(options) do
   vim.o[k] = v
