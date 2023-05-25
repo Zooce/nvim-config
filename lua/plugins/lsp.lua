@@ -8,7 +8,7 @@ return {
       'neovim/nvim-lspconfig',
       'hrsh7th/cmp-nvim-lsp',
       'nvim-telescope/telescope.nvim',
-      -- 'folke/neodev.nvim',
+      'folke/neodev.nvim',
     },
     config = function()
       require('mason').setup {
@@ -30,13 +30,13 @@ return {
               -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
               version = 'LuaJIT',
             },
-            diagnostics = {
-              -- Get the language server to recognize the `vim` global
-              globals = { 'vim' },
-            },
+            -- diagnostics = {
+            --   -- Get the language server to recognize the `vim` global
+            --   globals = { 'vim' },
+            -- },
             workspace = {
               -- Make the server aware of Neovim runtime files
-              library = vim.api.nvim_get_runtime_file("", true),
+              -- library = vim.api.nvim_get_runtime_file("", true),
               checkThirdParty = false,
             },
             -- Do not send telemetry data containing a randomized but unique identifier
@@ -88,12 +88,12 @@ return {
       }
     end,
   },
-  -- {
-  --   -- Lua LSP for Neovim config
-  --   'folke/neodev.nvim',
-  --   -- event = 'VeryLazy',
-  --   config = true,
-  -- },
+  {
+    -- Lua LSP for Neovim config
+    'folke/neodev.nvim',
+    -- event = 'VeryLazy',
+    config = true,
+  },
   {
     -- LSP status
     'j-hui/fidget.nvim',
