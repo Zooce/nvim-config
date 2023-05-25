@@ -4,6 +4,16 @@ vim.keymap.set({ 'n', 'v' }, '<space>', '<nop>', { silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 
+-- credit to https://www.reddit.com/r/neovim/comments/1335pfc/comment/jiaagyi/?utm_source=share&utm_medium=web2x&context=3
+local function close_float()
+  local inactive_wins = vim.fn.filter(vim.api.nvim_list_wins(), function(_, v)
+    return vim.api.nvim_win_get_config(v).relative ~= ''
+      and v ~= vim.api.nvim_get_current_win()
+  end)
+  for _, win in ipairs(inactive_wins) do
+    pcall(vim.api.nvim_win_close, win, false)
+  end
+end
 helpers.nmap('<C-h>', '<C-w>h', 'Move left to the next window')
 helpers.nmap('<C-j>', '<C-w>j', 'Move down to the next window')
 helpers.nmap('<C-k>', '<C-w>k', 'Move up to the next window')
@@ -14,6 +24,7 @@ helpers.nmap('[e', vim.diagnostic.goto_prev, 'Goto previous diagnostic')
 helpers.nmap(']e', vim.diagnostic.goto_next, 'Goto next diagnostic')
 helpers.nmap('<leader>q', vim.diagnostic.setloclist, 'Place diagnostics in the location list')
 helpers.nmap('<leader>e', vim.diagnostic.open_float, 'Open diagnostics float')
+helpers.nmap('<Esc>', close_float, 'Close inactive floats')
 helpers.nmap('<leader><del>', ':%s/\\s\\+$//e<CR>', 'Remove trailing whitespace')
 helpers.nmap('<leader>gl', '^vg_', 'Visual select current line content')
 

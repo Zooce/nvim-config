@@ -16,6 +16,13 @@ require('config.options')
 require('config.keymaps')
 require('config.autocmds')
 
+vim.diagnostic.config({
+  virtual_text = false,
+  float = {
+    border = 'rounded',
+  }
+})
+
 -- [[ Start lazy.nvim ]]
 require('lazy').setup({
   spec = {
