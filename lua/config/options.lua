@@ -9,8 +9,8 @@ local options = {
   cursorline = true, -- highlight the current line
   number = true, -- show line numbers
   relativenumber = true, -- show relative line numbers
-  scrolloff = 6, -- always show at least 4 lines around the cursor
-  sidescrolloff = 6, -- always show at least 4 characters around the cursor
+  scrolloff = 3, -- always show at least X lines around the cursor
+  sidescrolloff = 3, -- always show at least X characters around the cursor
   signcolumn = 'yes', -- show the sign column (TODO: should this be added to vim.wo ?)
 
   -- [[ Filetypes ]]
@@ -62,7 +62,7 @@ local options = {
 
 vim.opt.shortmess:append 'c' -- don't show `ins-completion-menu` messages
 vim.opt.list = true
-vim.opt.listchars = { trail = '-' }
+vim.opt.listchars = { tab = '> ', trail = '·' }
 
 for k, v in pairs(options) do
   vim.o[k] = v
