@@ -10,7 +10,9 @@ return {
     config = function()
       vim.o.timeout = true
       vim.o.timeoutlen = 300
-      require('which-key').setup{}
+      require('which-key').setup{
+        window = { border = 'single' },
+      }
     end,
   },
   {
@@ -66,10 +68,8 @@ return {
     lazy = false,
     priority = 999,
     config = function()
-      -- local noir = require('noirbuddy.plugins.lualine')
       require('lualine').setup {
         options = {
-          -- theme = noir.theme,
           icons_enabled = false,
           component_separators = '',
           section_separators = '',
