@@ -33,6 +33,7 @@ require('lazy').setup({
     notify = false, -- no need to notify
   },
   change_detection = { enabled = false },
+  ui = { border = 'single' },
   -- TODO: consider disabling some rtp plugins (see https://github.com/LazyVim/starter/blob/main/lua/config/lazy.lua)
 })
 

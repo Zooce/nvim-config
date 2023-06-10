@@ -12,12 +12,11 @@ return {
     },
     config = function()
       require('mason').setup {
-        ui = { border = 'rounded' },
+        ui = { border = 'single' },
       }
 
       -- put other LSP servers you want here
       local servers = {
-        pyright = {},
         ['rust_analyzer@nightly'] = {
           procMacro = { enable = true },
         },
@@ -45,7 +44,6 @@ return {
             },
           },
         },
-        svelte = {},
       }
 
       local capabilities = vim.lsp.protocol.make_client_capabilities()

@@ -8,7 +8,12 @@ return {
     },
     config = function()
       local telescope = require 'telescope'
-      telescope.setup {}
+      telescope.setup{
+        defaults = {
+          cache_picker = { limit_entries = 10000 },
+          borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
+        },
+      }
       pcall(telescope.load_extension, 'fzf')
 
       -- keymaps
