@@ -7,6 +7,7 @@ vim.g.rust_recommended_style = 0
 local options = {
   -- [[ Context ]]
   cursorline = true, -- highlight the current line
+  cursorcolumn = true, -- highlight the current column
   number = true, -- show line numbers
   relativenumber = true, -- show relative line numbers
   scrolloff = 3, -- always show at least X lines around the cursor
