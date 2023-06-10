@@ -1,3 +1,18 @@
+-- set up single borders for lsp
+vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
+  vim.lsp.handlers.hover, {
+    border = 'single',
+  }
+)
+vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
+  vim.lsp.handlers.signature_help, {
+    border = 'single',
+  }
+)
+vim.diagnostic.config{
+  float = { border = 'single' },
+}
+
 return {
   {
     -- LSP management and configuration
@@ -75,6 +90,7 @@ return {
           vim.lsp.buf.format()
         end, { desc = 'Format the current buffer' })
       end
+      require('lspconfig.ui.windows').default_opts{ border = 'single' }
       mason_config.setup_handlers {
         function(server)
           require('lspconfig')[server].setup {
