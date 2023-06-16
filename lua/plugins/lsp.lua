@@ -112,6 +112,7 @@ return {
     -- LSP status
     'j-hui/fidget.nvim',
     event = 'BufRead',
+    tag = 'legacy', -- FIXME: fidget is being rewritten (update when it's ready)
     config = function()
       require('fidget').setup {
         text = {
