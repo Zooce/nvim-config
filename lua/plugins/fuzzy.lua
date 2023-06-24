@@ -1,3 +1,4 @@
+local helpers = require('helpers')
 return {
   {
     'nvim-telescope/telescope.nvim',
@@ -7,21 +8,9 @@ return {
       'nvim-telescope/telescope-fzf-native.nvim',
     },
     config = function()
-      local dropdown = function(preview)
-        return require('telescope.themes').get_dropdown({
-          borderchars = {
-            { '─', '│', '─', '│', '┌', '┐', '┘', '└'},
-            prompt = {'─', '│', ' ', '│', '┌', '┐', '│', '│'},
-            results = {'─', '│', '─', '│', '├', '┤', '┘', '└'},
-            preview = { '─', '│', '─', '│', '┌', '┐', '┘', '└'},
-          },
-          preview = preview,
-          layout_config = { width = 0.7, height = 0.6 },
-        })
-      end
       local telescope = require 'telescope'
       telescope.setup{
-        defaults = dropdown(false)
+        defaults = helpers.dropdown(false)
       }
       pcall(telescope.load_extension, 'fzf')
 
@@ -32,15 +21,15 @@ return {
       nmap('<leader>/b', builtin.buffers, 'Search open buffers')
       nmap('<leader>/f', builtin.find_files, 'Search files')
       nmap('<leader>/h', function()
-        builtin.find_files(vim.tbl_extend('force', dropdown(false), {
+        builtin.find_files(vim.tbl_extend('force', helpers.dropdown(false), {
           hidden = true,
           no_ignore = true,
         }))
       end, 'Search files (incl. hidden/ignored)')
-      nmap('<leader>//', function() builtin.current_buffer_fuzzy_find(dropdown(true)) end, 'Search in current buffer')
-      nmap('<leader>/g', function() builtin.live_grep(dropdown(true)) end, 'Search grep')
-      nmap('<leader>/e', function() builtin.diagnostics(dropdown(true)) end, 'Search diagnostics')
-      nmap('<leader>/w', function() builtin.grep_string(dropdown(true)) end, 'Search word')
+      nmap('<leader>//', function() builtin.current_buffer_fuzzy_find(helpers.dropdown(true)) end, 'Search in current buffer')
+      nmap('<leader>/g', function() builtin.live_grep(helpers.dropdown(true)) end, 'Search grep')
+      nmap('<leader>/e', function() builtin.diagnostics(helpers.dropdown(true)) end, 'Search diagnostics')
+      nmap('<leader>/w', function() builtin.grep_string(helpers.dropdown(true)) end, 'Search word')
     end
   },
   { -- help telescope order its results

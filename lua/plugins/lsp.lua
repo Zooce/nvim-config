@@ -13,6 +13,7 @@ vim.diagnostic.config{
   float = { border = 'single' },
 }
 
+local helpers = require('helpers')
 return {
   {
     -- LSP management and configuration
@@ -71,7 +72,7 @@ return {
       }
       local on_attach = function(_, bufnr)
         local lnmap = function(k, f, d)
-          require('helpers').nmap(k, f, 'LSP: ' .. d)
+          helpers.nmap(k, f, 'LSP: ' .. d)
         end
 
         -- keymaps for LSP attached buffers (Telescope gives us extra goodies)
@@ -79,9 +80,9 @@ return {
         lnmap('<leader>rn', vim.lsp.buf.rename, '[r]e[n]ame')
         lnmap('<leader>.', vim.lsp.buf.code_action, '[c]ode[a]ction')
         lnmap('gd', telescope.lsp_definitions, '[g]oto [d]efinition')
-        lnmap('<leader>/r', telescope.lsp_references, 'Search references')
-        lnmap('<leader>/sd', telescope.lsp_document_symbols, 'Search document symbols')
-        lnmap('<leader>/sw', telescope.lsp_dynamic_workspace_symbols, 'Search workspace symbols')
+        lnmap('<leader>/r', function() telescope.lsp_references(helpers.dropdown(true)) end, 'Search references')
+        lnmap('<leader>/sd', function() telescope.lsp_document_symbols(helpers.dropdown(true)) end, 'Search document symbols')
+        lnmap('<leader>/sw', function() telescope.lsp_dynamic_workspace_symbols(helpers.dropdown(true)) end, 'Search workspace symbols')
         lnmap('K', vim.lsp.buf.hover, 'Hover documentation')
         lnmap('<C-k>', vim.lsp.buf.signature_help, 'Signature documentation')
 

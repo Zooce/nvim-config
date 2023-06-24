@@ -13,6 +13,19 @@ M.xmap = function(keys, func, desc)
   M.keymap('x', keys, func, desc)
 end
 
+M.dropdown = function(preview)
+  return require('telescope.themes').get_dropdown({
+    borderchars = {
+      { '─', '│', '─', '│', '┌', '┐', '┘', '└'},
+      prompt = {'─', '│', ' ', '│', '┌', '┐', '│', '│'},
+      results = {'─', '│', '─', '│', '├', '┤', '┘', '└'},
+      preview = { '─', '│', '─', '│', '┌', '┐', '┘', '└'},
+    },
+    preview = preview,
+    layout_config = { width = 0.7, height = 0.6 },
+  })
+end
+
 return M
 
 -- vim: ts=2 sts=2 sw=2 et
