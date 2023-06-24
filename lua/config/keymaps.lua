@@ -27,6 +27,7 @@ helpers.nmap('<leader>e', vim.diagnostic.open_float, 'Open diagnostics float')
 helpers.nmap('<Esc>', close_float, 'Close inactive floats')
 helpers.nmap('<leader><del>', ':%s/\\s\\+$//e<CR>', 'Remove trailing whitespace')
 helpers.nmap('<leader>gl', '^vg_', 'Visual select current line content')
+helpers.nmap('<leader>i', ':Inspect<CR>', 'Inspect at cursor')
 
 helpers.vmap('p', '"_dP', 'Keep clipboard after pasting over a selection')
 helpers.vmap('<', '<gv', 'Stay in indent mode after left indent')
