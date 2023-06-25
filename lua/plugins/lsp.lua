@@ -79,7 +79,7 @@ return {
         local telescope = require 'telescope.builtin'
         lnmap('<leader>rn', vim.lsp.buf.rename, '[r]e[n]ame')
         lnmap('<leader>.', vim.lsp.buf.code_action, '[c]ode[a]ction')
-        lnmap('gd', telescope.lsp_definitions, '[g]oto [d]efinition')
+        lnmap('gd', function() telescope.lsp_definitions(helpers.dropdown(true)) end, '[g]oto [d]efinition')
         lnmap('<leader>/r', function() telescope.lsp_references(helpers.dropdown(true)) end, 'Search references')
         lnmap('<leader>/sd', function() telescope.lsp_document_symbols(helpers.dropdown(true)) end, 'Search document symbols')
         lnmap('<leader>/sw', function() telescope.lsp_dynamic_workspace_symbols(helpers.dropdown(true)) end, 'Search workspace symbols')

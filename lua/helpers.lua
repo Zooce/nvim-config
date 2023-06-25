@@ -21,7 +21,7 @@ M.dropdown = function(preview)
       results = {'─', '│', '─', '│', '├', '┤', '┘', '└'},
       preview = { '─', '│', '─', '│', '┌', '┐', '┘', '└'},
     },
-    preview = preview,
+    previewer = preview,
     layout_config = { width = 0.7, height = 0.6 },
   })
 end

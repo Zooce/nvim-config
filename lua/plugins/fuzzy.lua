@@ -9,17 +9,15 @@ return {
     },
     config = function()
       local telescope = require 'telescope'
-      telescope.setup{
-        defaults = helpers.dropdown(false)
-      }
+      telescope.setup({})
       pcall(telescope.load_extension, 'fzf')
 
       -- keymaps
-      local nmap = require('helpers').nmap
+      local nmap = helpers.nmap
       local builtin = require 'telescope.builtin'
-      nmap('<leader>?', builtin.help_tags, 'Search :help tags')
-      nmap('<leader>/b', builtin.buffers, 'Search open buffers')
-      nmap('<leader>/f', builtin.find_files, 'Search files')
+      nmap('<leader>?', function() builtin.help_tags(helpers.dropdown(false)) end, 'Search :help tags')
+      nmap('<leader>/b', function() builtin.buffers(helpers.dropdown(false)) end, 'Search open buffers')
+      nmap('<leader>/f', function() builtin.find_files(helpers.dropdown(false)) end, 'Search files')
       nmap('<leader>/h', function()
         builtin.find_files(vim.tbl_extend('force', helpers.dropdown(false), {
           hidden = true,
