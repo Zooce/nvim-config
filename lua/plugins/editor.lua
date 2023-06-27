@@ -23,9 +23,19 @@ return {
     priority = 1000,
     config = true,
   },
+  {
+    'Zooce/indomitable.nvim',
+    enabled = true,
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require('indomitable')
+      vim.cmd [[colorscheme indomitable]]
+    end,
+  },
   { -- colorscheme
     'ellisonleao/gruvbox.nvim',
-    enabled = true,
+    enabled = false,
     lazy = false,
     priority = 1000, -- be one of the first to load
     config = function()
@@ -70,6 +80,7 @@ return {
     config = function()
       require('lualine').setup {
         options = {
+          theme = require('indomitable.lualine'),
           icons_enabled = false,
           component_separators = '',
           section_separators = '',
@@ -83,7 +94,7 @@ return {
             {
               require('lazy.status').updates,
               cond = require('lazy.status').has_updates,
-              color = { fg = "#ff9e64" },
+              color = { fg = require('indomitable.palette').changed }, -- was #ff9e64
             },
           },
         },
