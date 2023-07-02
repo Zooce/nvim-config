@@ -91,7 +91,7 @@ return {
           vim.lsp.buf.format()
         end, { desc = 'Format the current buffer' })
       end
-      require('lspconfig.ui.windows').default_opts{ border = 'single' }
+      require('lspconfig.ui.windows').default_options.border = 'single'
       mason_config.setup_handlers {
         function(server)
           require('lspconfig')[server].setup {
