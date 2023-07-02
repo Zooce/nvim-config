@@ -15,15 +15,7 @@ return {
       }
     end,
   },
-  {
-    'jesseleite/nvim-noirbuddy',
-    dependencies = { 'tjdevries/colorbuddy.nvim' },
-    enabled = false,
-    lazy = false,
-    priority = 1000,
-    config = true,
-  },
-  {
+  { -- colorscheme
     'Zooce/indomitable.nvim',
     enabled = true,
     lazy = false,
@@ -33,35 +25,35 @@ return {
       vim.cmd [[colorscheme indomitable]]
     end,
   },
-  { -- colorscheme
-    'ellisonleao/gruvbox.nvim',
-    enabled = false,
-    lazy = false,
-    priority = 1000, -- be one of the first to load
-    config = function()
-      local palette = require 'gruvbox.palette'
-      local searchColors = {
-        bg = palette.bright_orange,
-        fg = palette.dark0_hard,
-      }
-      require('gruvbox').setup {
-        bold = false,
-        italic = {
-          strings = false,
-          comments = false,
-          operators = false,
-          folds = false,
-        },
-        inverse = false,
-        overrides = {
-          IncSearch = searchColors,
-          Search = searchColors,
-        },
-      }
-      vim.o.background = 'dark' -- use 'light' for the light version
-      vim.cmd [[colorscheme gruvbox]]
-    end,
-  },
+  -- { -- colorscheme
+  --   'ellisonleao/gruvbox.nvim',
+  --   enabled = false,
+  --   lazy = false,
+  --   priority = 1000, -- be one of the first to load
+  --   config = function()
+  --     local palette = require 'gruvbox.palette'
+  --     local searchColors = {
+  --       bg = palette.bright_orange,
+  --       fg = palette.dark0_hard,
+  --     }
+  --     require('gruvbox').setup {
+  --       bold = false,
+  --       italic = {
+  --         strings = false,
+  --         comments = false,
+  --         operators = false,
+  --         folds = false,
+  --       },
+  --       inverse = false,
+  --       overrides = {
+  --         IncSearch = searchColors,
+  --         Search = searchColors,
+  --       },
+  --     }
+  --     vim.o.background = 'dark' -- use 'light' for the light version
+  --     vim.cmd [[colorscheme gruvbox]]
+  --   end,
+  -- },
   { -- terminal
     'akinsho/toggleterm.nvim',
     event = 'VeryLazy',
@@ -70,7 +62,7 @@ return {
         open_mapping = [[<C-\>]],
         direction = 'float',
       }
-      -- on Windows this doesn't seem to work with GitBash
+      -- FIXME: on Windows this doesn't seem to work with GitBash
     end,
   },
   { -- status line
@@ -114,16 +106,24 @@ return {
     'tpope/vim-sleuth',
     event = 'BufReadPre',
   },
+  -- {
+  --   'folke/trouble.nvim',
+  --   dependencies = { 'nvim-tree/nvim-web-devicons' },
+  --   event = 'BufRead',
+  --   config = function()
+  --     require('trouble').setup {}
+  --     local helpers = require('helpers')
+  --     helpers.nmap('<leader>xx', '<cmd>TroubleToggle<cr>', 'Toggle Trouble')
+  --     helpers.nmap('<leader>xw', '<cmd>TroubleToggle workspace_diagnostics<cr>', 'Toggle Trouble (Workspace)')
+  --     helpers.nmap('<leader>xd', '<cmd>TroubleToggle document_diagnostics<cr>', 'Toggle Trouble (Document)')
+  --   end,
+  -- },
   {
-    'folke/trouble.nvim',
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
-    event = 'BufRead',
+    'NvChad/nvim-colorizer.lua',
     config = function()
-      require('trouble').setup {}
-      local helpers = require('helpers')
-      helpers.nmap('<leader>xx', '<cmd>TroubleToggle<cr>', 'Toggle Trouble')
-      helpers.nmap('<leader>xw', '<cmd>TroubleToggle workspace_diagnostics<cr>', 'Toggle Trouble (Workspace)')
-      helpers.nmap('<leader>xd', '<cmd>TroubleToggle document_diagnostics<cr>', 'Toggle Trouble (Document)')
+      require('colorizer').setup {
+        user_default_options = { names = false },
+      }
     end,
   },
   -- TODO: consider https://github.com/folke/noice.nvim

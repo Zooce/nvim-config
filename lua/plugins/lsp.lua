@@ -103,14 +103,11 @@ return {
       }
     end,
   },
-  {
-    -- Lua LSP for Neovim config
+  { -- Lua LSP for Neovim config
     'folke/neodev.nvim',
-    -- event = 'VeryLazy',
     config = true,
   },
-  {
-    -- LSP status
+  { -- LSP status
     'j-hui/fidget.nvim',
     event = 'BufRead',
     tag = 'legacy', -- FIXME: fidget is being rewritten (update when it's ready)
