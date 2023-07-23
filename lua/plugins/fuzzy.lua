@@ -13,6 +13,9 @@ return {
         defaults = {
           path_display = { 'truncate' },
         },
+        pickers = {
+          lsp_references = { show_line = false },
+        },
       })
       pcall(telescope.load_extension, 'fzf')
 
@@ -30,8 +33,16 @@ return {
       end, 'Search files (incl. hidden/ignored)')
       nmap('<leader>//', function() builtin.current_buffer_fuzzy_find(helpers.dropdown(true)) end, 'Search in current buffer')
       nmap('<leader>/g', function() builtin.live_grep(helpers.dropdown(true)) end, 'Search grep')
-      nmap('<leader>/e', function() builtin.diagnostics(helpers.dropdown(true)) end, 'Search diagnostics')
+      nmap('<leader>/e', function() builtin.diagnostics(helpers.dropdown(true)) end, 'Search workspace diagnostics')
       nmap('<leader>/w', function() builtin.grep_string(helpers.dropdown(true)) end, 'Search word')
+      nmap('gd', function() builtin.lsp_definitions(helpers.dropdown(true)) end, '[g]oto [d]efinition')
+      nmap('<leader>/r', function() builtin.lsp_references(helpers.dropdown(true)) end, 'Search references')
+      nmap('<leader>/sd', function() builtin.lsp_document_symbols(helpers.dropdown(true)) end, 'Search document symbols')
+      nmap('<leader>/sw', function() builtin.lsp_dynamic_workspace_symbols(helpers.dropdown(true)) end, 'Search workspace symbols')
+      nmap('<leader>rn', vim.lsp.buf.rename, '[r]e[n]ame')
+      nmap('<leader>.', vim.lsp.buf.code_action, '[c]ode[a]ction')
+      nmap('K', vim.lsp.buf.hover, 'Hover documentation')
+      nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature documentation')
     end
   },
   { -- help telescope order its results

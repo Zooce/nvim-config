@@ -13,7 +13,6 @@ vim.diagnostic.config{
   float = { border = 'single' },
 }
 
-local helpers = require('helpers')
 return {
   {
     -- LSP management and configuration
@@ -23,7 +22,6 @@ return {
       'williamboman/mason-lspconfig.nvim',
       'neovim/nvim-lspconfig',
       'hrsh7th/cmp-nvim-lsp',
-      'nvim-telescope/telescope.nvim',
       'folke/neodev.nvim',
     },
     config = function()
@@ -35,6 +33,7 @@ return {
       local servers = {
         ['rust_analyzer@nightly'] = {
           procMacro = { enable = true },
+          checkOnSave = { command = 'clippy' },
         },
         -- Lua LSP resources:
         -- * https://github.com/neovim/nvim-lspconfig/blob/master/lua/lspconfig/server_configurations/lua_ls.lua
@@ -71,21 +70,6 @@ return {
         automatic_installation = true,
       }
       local on_attach = function(_, bufnr)
-        local lnmap = function(k, f, d)
-          helpers.nmap(k, f, 'LSP: ' .. d)
-        end
-
-        -- keymaps for LSP attached buffers (Telescope gives us extra goodies)
-        local telescope = require 'telescope.builtin'
-        lnmap('<leader>rn', vim.lsp.buf.rename, '[r]e[n]ame')
-        lnmap('<leader>.', vim.lsp.buf.code_action, '[c]ode[a]ction')
-        lnmap('gd', function() telescope.lsp_definitions(helpers.dropdown(true)) end, '[g]oto [d]efinition')
-        lnmap('<leader>/r', function() telescope.lsp_references(helpers.dropdown(true)) end, 'Search references')
-        lnmap('<leader>/sd', function() telescope.lsp_document_symbols(helpers.dropdown(true)) end, 'Search document symbols')
-        lnmap('<leader>/sw', function() telescope.lsp_dynamic_workspace_symbols(helpers.dropdown(true)) end, 'Search workspace symbols')
-        lnmap('K', vim.lsp.buf.hover, 'Hover documentation')
-        lnmap('<C-k>', vim.lsp.buf.signature_help, 'Signature documentation')
-
         -- Custom `:Format` command
         vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
           vim.lsp.buf.format()
