@@ -80,6 +80,8 @@ return {
         },
         sections = {
           -- TODO: consider some of the same sections from https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/plugins/ui.lua
+          lualine_b = { 'filename' },
+          lualine_c = { 'branch', 'diff', 'diagnostics' },
           lualine_x = {
             'encoding',
             'fileformat',
