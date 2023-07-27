@@ -76,6 +76,7 @@ return {
           icons_enabled = false,
           component_separators = '',
           section_separators = '',
+          globalstatus = true,
         },
         sections = {
           -- TODO: consider some of the same sections from https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/plugins/ui.lua
