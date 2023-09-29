@@ -116,8 +116,14 @@ return {
     'lukas-reineke/indent-blankline.nvim',
     event = 'BufRead',
     main = 'ibl',
-    opts = {},
-    config = true,
+    config = function()
+      require('ibl').setup{
+        indent = { char = '▏' },
+        scope = { enabled = false },
+      }
+      local helpers = require('helpers')
+      helpers.nmap('<leader>|', ':IBLToggle<CR>', 'Toggle indentation guides');
+    end,
   },
   { -- auto detect indentation
     'tpope/vim-sleuth',
