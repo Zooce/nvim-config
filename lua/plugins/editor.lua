@@ -2,7 +2,23 @@ return {
   { -- show git status marks
     'lewis6991/gitsigns.nvim',
     event = 'BufRead',
-    config = true,
+    config = function()
+      require('gitsigns').setup{
+        on_attach = function(bufnr)
+          local gs = package.loaded.gitsigns
+          vim.keymap.set('n', '[c', function()
+            if vim.wo.diff then return '[c' end
+            vim.schedule(function() gs.prev_hunk() end)
+            return '<Ignore>'
+          end, { expr = true, buffer = bufnr, desc = 'Goto previous change' })
+          vim.keymap.set('n', ']c', function()
+            if vim.wo.diff then return ']c' end
+            vim.schedule(function() gs.next_hunk() end)
+            return '<Ignore>'
+          end, { expr = true, buffer = bufnr, desc = 'Goto next change' })
+        end
+      }
+    end,
   },
   { -- show available keymaps
     'folke/which-key.nvim',
@@ -99,11 +115,9 @@ return {
   { -- show indent guides
     'lukas-reineke/indent-blankline.nvim',
     event = 'BufRead',
-    config = function()
-      require('indent_blankline').setup {
-        show_current_context = true,
-      }
-    end,
+    main = 'ibl',
+    opts = {},
+    config = true,
   },
   { -- auto detect indentation
     'tpope/vim-sleuth',
