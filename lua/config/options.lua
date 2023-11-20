@@ -10,8 +10,8 @@ local options = {
   cursorcolumn = true, -- highlight the current column
   number = true, -- show line numbers
   relativenumber = true, -- show relative line numbers
-  scrolloff = 3, -- always show at least X lines around the cursor
-  sidescrolloff = 3, -- always show at least X characters around the cursor
+  scrolloff = 1, -- always show at least X lines around the cursor
+  sidescrolloff = 1, -- always show at least X characters around the cursor
   signcolumn = 'yes', -- show the sign column (TODO: should this be added to vim.wo ?)
 
   -- [[ Filetypes ]]
