@@ -4,12 +4,17 @@ return {
     dependencies = {
       'JoosepAlviste/nvim-ts-context-commentstring',
     },
-    config = function()
-      require('Comment').setup({
-        pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
-      })
-    end,
+    config = true,
     event = 'BufRead',
+  },
+  {
+    'JoosepAlviste/nvim-ts-context-commentstring',
+    event = 'BufRead',
+    config = function()
+      ---@diagnostic disable-next-line: missing-fields
+      require('ts_context_commentstring').setup{};
+      vim.g.skip_ts_context_commentstring_module = true;
+    end,
   },
   { -- surround
     'tpope/vim-surround',
@@ -20,12 +25,18 @@ return {
     'nvim-treesitter/nvim-treesitter',
     event = 'BufRead',
     build = function()
-      pcall(require('nvim-treesitter.install').update { with_sync = true })
+      require('nvim-treesitter.install').update({ with_sync = true })()
     end,
-    dependencies = { 'nvim-treesitter/nvim-treesitter-textobjects' },
+    dependencies = {
+      'JoosepAlviste/nvim-ts-context-commentstring',
+      'nvim-treesitter/nvim-treesitter-textobjects',
+    },
     config = function()
       -- learned this from https://github.com/nvim-lua/kickstart.nvim
-      require('nvim-treesitter.configs').setup {
+      ---@diagnostic disable-next-line: missing-fields
+      require('nvim-treesitter.configs').setup({
+        sync_install = false,
+        auto_install = true,
         highlight = { enable = true },
         indent = { enable = true },
         incremental_selection = {
@@ -52,9 +63,6 @@ return {
           'vim',
           'yaml',
           'zig',
-        },
-        context_commentstring = {
-          enable = true,
         },
         -- textobjects = {
         --     select = {
@@ -100,7 +108,7 @@ return {
         --         },
         --     },
         -- },
-      }
+      })
     end,
   },
 }

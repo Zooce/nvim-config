@@ -16,6 +16,9 @@ return {
         pickers = {
           lsp_references = { show_line = false },
           lsp_definitions = { show_line = false },
+          lsp_document_symbols = { symbol_width = 0, symbol_type_width = 0 },
+          lsp_dynamic_workspace_symbols = { symbol_width = 0, symbol_type_width = 0 },
+          lsp_workspace_symbols = { symbol_width = 0, symbol_type_width = 0 },
         },
       })
       pcall(telescope.load_extension, 'fzf')
