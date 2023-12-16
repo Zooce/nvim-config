@@ -27,6 +27,7 @@ helpers.nmap('<leader>i', ':Inspect<CR>', 'Inspect at cursor')
 helpers.nmap('<leader>wv', ':vsplit<CR>', 'Split window vertically')
 helpers.nmap('<leader>ws', ':split<CR>', 'Split window horizontally')
 helpers.nmap('<leader>wo', ':only<CR>', 'Only show the current window')
+helpers.nmap('<leader>t', ':NvimTreeToggle<CR>', 'Toggle NvimTree')
 
 helpers.vmap('p', '"_dP', 'Keep clipboard after pasting over a selection')
 helpers.vmap('<', '<gv', 'Stay in indent mode after left indent')
