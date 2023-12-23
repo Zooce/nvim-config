@@ -11,7 +11,16 @@ return {
       local telescope = require 'telescope'
       telescope.setup({
         defaults = {
-          path_display = { 'truncate' },
+          ---@diagnostic disable-next-line: unused-local
+          path_display = function(opts, path)
+            local tail = require('telescope.utils').path_tail(path);
+            local p = string.sub(path, 1, -(#tail + 1))
+            local padding = vim.api.nvim_win_get_width(0) - (#tail + #p) - 2
+            if padding < 0 then
+              padding = 0
+            end
+            return tail .. string.rep(' ', padding) .. p
+          end,
         },
         pickers = {
           lsp_references = { show_line = false },
