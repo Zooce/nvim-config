@@ -49,35 +49,6 @@ return {
       vim.cmd [[colorscheme indomitable]]
     end,
   },
-  -- { -- colorscheme
-  --   'ellisonleao/gruvbox.nvim',
-  --   enabled = false,
-  --   lazy = false,
-  --   priority = 1000, -- be one of the first to load
-  --   config = function()
-  --     local palette = require 'gruvbox.palette'
-  --     local searchColors = {
-  --       bg = palette.bright_orange,
-  --       fg = palette.dark0_hard,
-  --     }
-  --     require('gruvbox').setup {
-  --       bold = false,
-  --       italic = {
-  --         strings = false,
-  --         comments = false,
-  --         operators = false,
-  --         folds = false,
-  --       },
-  --       inverse = false,
-  --       overrides = {
-  --         IncSearch = searchColors,
-  --         Search = searchColors,
-  --       },
-  --     }
-  --     vim.o.background = 'dark' -- use 'light' for the light version
-  --     vim.cmd [[colorscheme gruvbox]]
-  --   end,
-  -- },
   { -- terminal
     'akinsho/toggleterm.nvim',
     event = 'VeryLazy',
@@ -96,7 +67,7 @@ return {
     config = function()
       require('lualine').setup {
         options = {
-          theme = require('indomitable.lualine'),
+          theme = 'indomitable',
           icons_enabled = false,
           component_separators = '',
           section_separators = '',
