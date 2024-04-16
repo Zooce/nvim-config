@@ -3,6 +3,7 @@ vim.g.maplocalleader = ' '
 
 -- https://github.com/rust-lang/rust.vim/blob/master/doc/rust.txt
 vim.g.rust_recommended_style = 0
+vim.g.markdown_recommended_style = 0
 
 local options = {
   -- [[ Context ]]
