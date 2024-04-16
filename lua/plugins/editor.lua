@@ -104,22 +104,6 @@ return {
       helpers.nmap('<leader>|', ':IBLToggle<CR>', 'Toggle indentation guides');
     end,
   },
-  { -- auto detect indentation
-    'tpope/vim-sleuth',
-    event = 'BufReadPre',
-  },
-  -- {
-  --   'folke/trouble.nvim',
-  --   dependencies = { 'nvim-tree/nvim-web-devicons' },
-  --   event = 'BufRead',
-  --   config = function()
-  --     require('trouble').setup {}
-  --     local helpers = require('helpers')
-  --     helpers.nmap('<leader>xx', '<cmd>TroubleToggle<cr>', 'Toggle Trouble')
-  --     helpers.nmap('<leader>xw', '<cmd>TroubleToggle workspace_diagnostics<cr>', 'Toggle Trouble (Workspace)')
-  --     helpers.nmap('<leader>xd', '<cmd>TroubleToggle document_diagnostics<cr>', 'Toggle Trouble (Document)')
-  --   end,
-  -- },
   {
     'NvChad/nvim-colorizer.lua',
     config = function()
@@ -128,8 +112,6 @@ return {
       }
     end,
   },
-  -- TODO: consider https://github.com/folke/noice.nvim
-  -- TODO: considerhttps://github.com/natecraddock/workspaces.nvim 
 }
 
 -- vim: ts=2 sts=2 sw=2 et
