@@ -60,8 +60,14 @@ return {
   },
   { -- help telescope order its results
     'nvim-telescope/telescope-fzf-native.nvim',
-    build = 'make',
-    cond = vim.fn.executable 'make' == 1,
+    cond = vim.fn.executable 'make' == 1 or vim.fn.executable 'cmake' == 1,
+    build = function()
+      if vim.fn.executable 'make' == 1 then
+        return 'make'
+      elseif vim.fn.executable 'cmake' == 1 then
+        return 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build'
+      end
+    end,
   },
 }
 
