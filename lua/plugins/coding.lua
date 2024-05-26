@@ -49,6 +49,7 @@ return {
           },
         },
         ensure_installed = {
+          'angular',
           'bash',
           'c', 'comment', 'cpp', 'css',
           'git_config', 'git_rebase', 'gitattributes', 'gitcommit', 'gitignore',
