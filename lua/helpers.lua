@@ -12,6 +12,9 @@ end
 M.xmap = function(keys, func, desc)
   M.keymap('x', keys, func, desc)
 end
+M.omap = function(keys, func, desc)
+  M.keymap('o', keys, func, desc)
+end
 
 M.dropdown = function(preview)
   return require('telescope.themes').get_dropdown({

@@ -37,6 +37,11 @@ helpers.vmap('p', '"_dP', 'Keep clipboard after pasting over a selection')
 helpers.vmap('<', '<gv', 'Stay in indent mode after left indent')
 helpers.vmap('>', '>gv', 'Stay in indent mode after right indent')
 
+helpers.xmap('il', 'g_o^', '[i]nside [l]ine')
+helpers.omap('il', ':<C-u>normal vil<CR>', '[i]nside [l]ine')
+helpers.xmap('al', '$o0', '[a]round [l]ine')
+helpers.omap('al', ':<C-u>normal val', '[a]round [l]ine')
+
 helpers.keymap({ 'v', 'x' }, '<M-j>', ":m '>+1<CR>gv=gv", 'Move selection down')
 helpers.keymap({ 'v', 'x' }, '<M-k>', ":m '<-2<CR>gv=gv", 'Move selection up')
 helpers.keymap({ 'v', 'x' }, '<leader>s', ':sort<CR>', 'Sort lines')
