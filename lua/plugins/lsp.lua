@@ -85,6 +85,10 @@ return {
           }
         end,
       }
+      -- add filetype for angularls
+      require('lspconfig').angularls.setup {
+        filetypes= { 'typescript', 'html', 'typescriptreact', 'typescript.tsx', 'angular.html' }
+      }
     end,
   },
   { -- Lua LSP for Neovim config
