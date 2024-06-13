@@ -59,6 +59,9 @@ return {
             },
           },
         },
+        angularls = {
+          filetypes = { 'typescript', 'html', 'typescriptreact', 'typescript.tsx', 'angular.html' },
+        },
       }
 
       local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -76,6 +79,7 @@ return {
         end, { desc = 'Format the current buffer' })
       end
       require('lspconfig.ui.windows').default_options.border = 'single'
+      -- TODO: try the "handlers" example from `:h mason-lspconfig.setup_handlers()
       mason_config.setup_handlers {
         function(server)
           require('lspconfig')[server].setup {
@@ -83,11 +87,12 @@ return {
             settings = servers[server],
             on_attach = on_attach,
           }
+          if servers[server] and servers[server]['filetypes'] ~= nil then
+            require('lspconfig')[server].setup {
+              filetypes = servers[server].filetypes,
+            }
+          end
         end,
-      }
-      -- add filetype for angularls
-      require('lspconfig').angularls.setup {
-        filetypes= { 'typescript', 'html', 'typescriptreact', 'typescript.tsx', 'angular.html' }
       }
     end,
   },
