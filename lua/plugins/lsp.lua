@@ -25,74 +25,66 @@ return {
       'folke/neodev.nvim',
     },
     config = function()
+      -- some UI setup
       require('mason').setup {
         ui = { border = 'single' },
       }
+      require('lspconfig.ui.windows').default_options.border = 'single'
 
-      -- put other LSP servers you want here
-      local servers = {
-        ['rust_analyzer@nightly'] = {
-          procMacro = { enable = true },
-          checkOnSave = { command = 'clippy' },
-        },
-        -- Lua LSP resources:
-        -- * https://github.com/neovim/nvim-lspconfig/blob/master/lua/lspconfig/server_configurations/lua_ls.lua
-        -- * https://github.com/LuaLS/lua-language-server/wiki/Settings
-        lua_ls = {
-          Lua = {
-            runtime = {
-              -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-              version = 'LuaJIT',
-            },
-            -- diagnostics = {
-            --   -- Get the language server to recognize the `vim` global
-            --   globals = { 'vim' },
-            -- },
-            workspace = {
-              -- Make the server aware of Neovim runtime files
-              -- library = vim.api.nvim_get_runtime_file("", true),
-              checkThirdParty = false,
-            },
-            -- Do not send telemetry data containing a randomized but unique identifier
-            telemetry = {
-              enable = false,
-            },
-          },
-        },
-        angularls = {
-          filetypes = { 'typescript', 'html', 'typescriptreact', 'typescript.tsx', 'angular.html' },
-        },
-      }
-
+      -- LSP handlers
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
-
-      local mason_config = require 'mason-lspconfig'
-      mason_config.setup {
-        ensure_installed = vim.tbl_keys(servers),
-        automatic_installation = true,
-      }
-      local on_attach = function(_, bufnr)
-        -- Custom `:Format` command
-        vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
-          vim.lsp.buf.format()
-        end, { desc = 'Format the current buffer' })
-      end
-      require('lspconfig.ui.windows').default_options.border = 'single'
-      -- TODO: try the "handlers" example from `:h mason-lspconfig.setup_handlers()
-      mason_config.setup_handlers {
-        function(server)
-          require('lspconfig')[server].setup {
+      local handlers = {
+        ['rust_analyzer'] = function()
+          require('lspconfig').rust_analyzer.setup {
             capabilities = capabilities,
-            settings = servers[server],
-            on_attach = on_attach,
+            settings = {
+              procMacro = { enable = true },
+              checkOnSave = { command = 'clippy' },
+            },
           }
-          if servers[server] and servers[server]['filetypes'] ~= nil then
-            require('lspconfig')[server].setup {
-              filetypes = servers[server].filetypes,
-            }
-          end
         end,
+        ['lua_ls'] = function()
+          -- Lua LSP resources:
+          -- * https://github.com/neovim/nvim-lspconfig/blob/master/lua/lspconfig/server_configurations/lua_ls.lua
+          -- * https://github.com/LuaLS/lua-language-server/wiki/Settings
+          require('lspconfig').lua_ls.setup {
+            capabilities = capabilities,
+            settings = {
+              Lua = {
+                runtime = {
+                  -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+                  version = 'LuaJIT',
+                },
+                -- diagnostics = {
+                --   -- Get the language server to recognize the `vim` global
+                --   globals = { 'vim' },
+                -- },
+                workspace = {
+                  -- Make the server aware of Neovim runtime files
+                  -- library = vim.api.nvim_get_runtime_file("", true),
+                  checkThirdParty = false,
+                },
+                -- Do not send telemetry data containing a randomized but unique identifier
+                telemetry = {
+                  enable = false,
+                },
+              },
+            },
+          }
+        end,
+        ['angularls'] = function()
+          require('lspconfig').angularls.setup {
+            capabilities = capabilities,
+            filetypes = { 'typescript', 'html', 'typescriptreact', 'typescript.tsx', 'angular.html' },
+          }
+        end,
+      }
+
+      local mason_config = require('mason-lspconfig')
+      mason_config.setup {
+        automatic_installation = true,
+        handlers = handlers,
       }
     end,
   },
