@@ -14,10 +14,17 @@ local function close_float()
     pcall(vim.api.nvim_win_close, win, false)
   end
 end
+
+local function prev()
+  vim.diagnostic.jump({ count = -1 })
+end
+local function next()
+  vim.diagnostic.jump({ count = 1 })
+end
 helpers.nmap('<M-j>', ':m .+1<CR>==', 'Move line down')
 helpers.nmap('<M-k>', ':m .-2<CR>==', 'Move line up')
-helpers.nmap('[e', vim.diagnostic.goto_prev, 'Goto previous diagnostic')
-helpers.nmap(']e', vim.diagnostic.goto_next, 'Goto next diagnostic')
+helpers.nmap('[e', prev, 'Goto previous diagnostic')
+helpers.nmap(']e', next, 'Goto next diagnostic')
 helpers.nmap('<leader>q', vim.diagnostic.setloclist, 'Place diagnostics in the location list')
 helpers.nmap('<leader>e', vim.diagnostic.open_float, 'Open diagnostics float')
 helpers.nmap('<Esc>', close_float, 'Close inactive floats')
