@@ -16,11 +16,11 @@ return {
         completion = {
           completeopt = 'menu,menuone,noinsert,noselect',
         },
-        view = {
-          docs = {
-            auto_open = false,
-          },
-        },
+        -- view = {
+        --   docs = {
+        --     auto_open = false,
+        --   },
+        -- },
         mapping = cmp.mapping.preset.insert {
           ['<C-space>'] = cmp.mapping.complete {},
           ['<Esc>'] = cmp.mapping.abort(),
