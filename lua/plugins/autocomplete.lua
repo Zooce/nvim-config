@@ -12,15 +12,11 @@ return {
       cmp.setup {
         window = {
           completion = cmp.config.window.bordered({ border = 'single' }),
+          documentation = cmp.config.window.bordered({ border = 'single' }),
         },
         completion = {
           completeopt = 'menu,menuone,noinsert,noselect',
         },
-        -- view = {
-        --   docs = {
-        --     auto_open = false,
-        --   },
-        -- },
         mapping = cmp.mapping.preset.insert {
           ['<C-space>'] = cmp.mapping.complete {},
           ['<Esc>'] = cmp.mapping.abort(),
