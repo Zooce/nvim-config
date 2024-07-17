@@ -79,7 +79,7 @@ return {
         ['angularls'] = function()
           require('lspconfig').angularls.setup {
             capabilities = capabilities,
-            filetypes = { 'typescript', 'html', 'typescriptreact', 'typescript.tsx', 'angular.html' },
+            filetypes = { 'typescript', 'html', 'typescriptreact', 'typescript.tsx', 'htmlangular' },
           }
         end,
       }
