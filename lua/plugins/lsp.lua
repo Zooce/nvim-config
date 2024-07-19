@@ -76,12 +76,6 @@ return {
             },
           }
         end,
-        ['angularls'] = function()
-          require('lspconfig').angularls.setup {
-            capabilities = capabilities,
-            filetypes = { 'typescript', 'html', 'typescriptreact', 'typescript.tsx', 'htmlangular' },
-          }
-        end,
       }
 
       local mason_config = require('mason-lspconfig')
