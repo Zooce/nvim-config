@@ -36,6 +36,7 @@ return {
       vim.o.timeoutlen = 300
       require('which-key').setup{
         win = { border = 'single' },
+        icons = { mappings = false },
       }
     end,
   },
