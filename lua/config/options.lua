@@ -70,4 +70,10 @@ for k, v in pairs(options) do
   vim.o[k] = v
 end
 
+vim.filetype.add({
+  pattern = {
+    [".*%.component%.html"] = "htmlangular", -- Sets the filetype to `htmlangular` if it matches the pattern
+  },
+})
+
 -- vim: ts=2 sts=2 sw=2 et
