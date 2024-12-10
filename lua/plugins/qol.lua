@@ -5,6 +5,7 @@ return {
   ---@type snacks.Config
   opts = {
     bigfile = { enabled = true },
+    dashboard = { enabled = true },
     notifier = {
       enabled = true,
       timeout = 3000,
@@ -27,8 +28,7 @@ return {
     { "<leader>gf", function() Snacks.lazygit.log_file() end, desc = "Lazygit Current File History" },
     { "<leader>gl", function() Snacks.lazygit.log() end, desc = "Lazygit Log (cwd)" },
     { "<leader>cR", function() Snacks.rename() end, desc = "Rename File" },
-    { "<c-/>",      function() Snacks.terminal() end, desc = "Toggle Terminal" },
-    { "<c-_>",      function() Snacks.terminal() end, desc = "which_key_ignore" },
+    { "<leader>\\",  function() Snacks.terminal() end, desc = "Toggle Terminal" },
     { "]]",         function() Snacks.words.jump(vim.v.count1) end, desc = "Next Reference", mode = { "n", "t" } },
     { "[[",         function() Snacks.words.jump(-vim.v.count1) end, desc = "Prev Reference", mode = { "n", "t" } },
     {
