@@ -39,7 +39,7 @@ return {
       dnmap('<F6>', dap.step_over, 'Step over')
       dnmap('<F7>', dap.step_into, 'Step into')
       dnmap('<F8>', dap.step_out, 'Step out')
-      dnmap('<leader>b', dap.toggle_breakpoint, 'Toggle breakpoint')
+      dnmap('<leader>bt', dap.toggle_breakpoint, 'Toggle breakpoint')
 
       -- dap ui
       local dapui = require 'dapui'
