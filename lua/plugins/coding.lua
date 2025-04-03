@@ -49,23 +49,6 @@ return {
             node_decremental = '<BS>',
           },
         },
-        ensure_installed = {
-          'angular',
-          'bash',
-          'c', 'comment', 'cpp', 'css',
-          'git_config', 'git_rebase', 'gitattributes', 'gitcommit', 'gitignore',
-          'html', 'http',
-          'java', 'javascript', 'jsdoc', 'json', 'json5', 'jsonc',
-          'lua',
-          'markdown', 'markdown_inline',
-          'python',
-          'ron', 'rust',
-          'scss', 'sql', 'svelte',
-          'toml', 'tsx', 'typescript',
-          'vim',
-          'yaml',
-          'zig',
-        },
         -- textobjects = {
         --     select = {
         --         enable = true,
