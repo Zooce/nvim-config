@@ -58,7 +58,10 @@ return {
         open_mapping = [[<C-\>]],
         direction = 'float',
       }
-      -- FIXME: on Windows this doesn't seem to work with GitBash
+      if vim.uv.os_uname().sysname == "Windows_NT" then
+        vim.cmd [[let &shell = '"C:/Program Files/Git/bin/bash.exe"']]
+        vim.cmd [[let &shellcmdflag = '-s']]
+      end
     end,
   },
   { -- status line
