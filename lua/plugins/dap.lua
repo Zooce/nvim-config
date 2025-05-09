@@ -82,6 +82,9 @@ return {
       dnmap('<F9>', dapui.toggle, 'Toggle DAP UI')
       dnmap('<F10>', dap.terminate, 'Stop')
       dnmap('<leader>bt', dap.toggle_breakpoint, 'Toggle breakpoint')
+      dnmap('<leader>bc', function()
+        dap.set_breakpoint(vim.fn.input('Condition: '))
+      end, 'Set conditional breakpoint')
     end,
   },
   {
