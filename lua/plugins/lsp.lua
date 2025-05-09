@@ -1,6 +1,10 @@
 -- set up single borders for lsp
-vim.lsp.handlers['textDocument/hover'] = vim.lsp.buf.hover({ border = 'single' })
-vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.buf.signature_help({ border = 'single' })
+vim.lsp.handlers['textDocument/hover'] = function(_, result)
+  vim.lsp.util.open_floating_preview(result.contents, result.contents.kind, { border = 'single' })
+end
+vim.lsp.handlers['textDocument/signatureHelp'] = function(_, result)
+  vim.lsp.util.open_floating_preview(result.contents, result.contents.kind, { border = 'single' })
+end
 vim.diagnostic.config{
   float = { border = 'single' },
 }
@@ -28,7 +32,9 @@ return {
       capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
       local handlers = {
         function(server)
-          require('lspconfig')[server].setup {}
+          require('lspconfig')[server].setup {
+            capabilities = capabilities,
+          }
         end,
         ['rust_analyzer'] = function()
           require('lspconfig').rust_analyzer.setup {
@@ -74,6 +80,7 @@ return {
       mason_config.setup {
         automatic_installation = true,
         handlers = handlers,
+        ensure_installed = {},
       }
     end,
   },
