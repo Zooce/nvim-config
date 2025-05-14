@@ -36,7 +36,6 @@ helpers.nmap('<leader>ws', ':split<CR>', 'Split window horizontally')
 helpers.nmap('<leader>wo', ':only<CR>', 'Only show current window')
 helpers.nmap('<leader>wq', ':quit<CR>', 'Quit current window')
 helpers.nmap('<leader>w=', ':wincmd =<CR>', 'Equal window sizes')
-helpers.nmap('<leader>t', ':NvimTreeToggle<CR>', 'Toggle NvimTree')
 helpers.nmap('<F1>', 'q')
 helpers.nmap('q', '<nop>')
 

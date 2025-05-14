@@ -1,12 +1,4 @@
 return {
-  { -- file tree
-    'nvim-tree/nvim-tree.lua',
-    config = function()
-      vim.g.loaded_netrw = 1
-      vim.g.loaded_netrwPlugin = 1
-      require('nvim-tree').setup()
-    end
-  },
   { -- show git status marks
     'lewis6991/gitsigns.nvim',
     event = 'BufRead',
