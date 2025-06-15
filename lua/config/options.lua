@@ -5,6 +5,10 @@ vim.g.maplocalleader = ' '
 vim.g.rust_recommended_style = 0
 vim.g.markdown_recommended_style = 0
 
+-- https://zigtools.org/zls/editors/vim/nvim-lspconfig/
+vim.g.zig_fmt_parse_errors = 0
+vim.g.zig_fmt_autosave = 0
+
 local options = {
   -- [[ Context ]]
   cursorline = true, -- highlight the current line
