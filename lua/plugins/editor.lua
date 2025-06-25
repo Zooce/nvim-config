@@ -51,7 +51,12 @@ return {
         direction = 'float',
       }
       if vim.uv.os_uname().sysname == "Windows_NT" then
-        vim.cmd [[let &shell = '"C:/Program Files/Git/bin/bash.exe"']]
+        local home = vim.fn.expand('~')
+        local git_path = home .. '/AppData/Local/Programs/Git/bin/bash.exe'
+        if vim.fn.filereadable(git_path) ~= 1 then
+          git_path = 'C:/Program Files/Git/bin/bash.exe'
+        end
+        vim.cmd(string.format([[let &shell = '%s']], git_path))
         vim.cmd [[let &shellcmdflag = '-s']]
       end
     end,
