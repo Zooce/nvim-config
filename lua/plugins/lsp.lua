@@ -9,96 +9,31 @@ vim.diagnostic.config{
   float = { border = 'single' },
 }
 
+-- enable LSPs
+-- configs located in .config/nvim/lsp/*.lua
+-- vim.lsp.enable('lua_ls');
+
 return {
   {
-    -- LSP management and configuration
-    'williamboman/mason.nvim',
-    event = 'VeryLazy',
+    'mason-org/mason-lspconfig.nvim',
+    opts = {},
     dependencies = {
-      'williamboman/mason-lspconfig.nvim',
+      { -- Mason for easier LSPs installation
+        'mason-org/mason.nvim',
+        opts = {
+          ui = {
+            border = 'single',
+          },
+        },
+      },
       'neovim/nvim-lspconfig',
-      'hrsh7th/cmp-nvim-lsp',
-      'folke/neodev.nvim',
     },
-    config = function()
-      -- some UI setup
-      require('mason').setup {
-        ui = { border = 'single' },
-      }
-      require('lspconfig.ui.windows').default_options.border = 'single'
-
-      -- LSP handlers
-      local capabilities = vim.lsp.protocol.make_client_capabilities()
-      capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
-      local handlers = {
-        function(server)
-          require('lspconfig')[server].setup {
-            capabilities = capabilities,
-          }
-        end,
-        ['rust_analyzer'] = function()
-          require('lspconfig').rust_analyzer.setup {
-            capabilities = capabilities,
-            settings = {
-              procMacro = { enable = true },
-              checkOnSave = { command = 'clippy' },
-            },
-          }
-        end,
-        ['lua_ls'] = function()
-          -- Lua LSP resources:
-          -- * https://github.com/neovim/nvim-lspconfig/blob/master/lua/lspconfig/server_configurations/lua_ls.lua
-          -- * https://github.com/LuaLS/lua-language-server/wiki/Settings
-          require('lspconfig').lua_ls.setup {
-            capabilities = capabilities,
-            settings = {
-              Lua = {
-                runtime = {
-                  -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-                  version = 'LuaJIT',
-                },
-                -- diagnostics = {
-                --   -- Get the language server to recognize the `vim` global
-                --   globals = { 'vim' },
-                -- },
-                workspace = {
-                  -- Make the server aware of Neovim runtime files
-                  -- library = vim.api.nvim_get_runtime_file("", true),
-                  checkThirdParty = false,
-                },
-                -- Do not send telemetry data containing a randomized but unique identifier
-                telemetry = {
-                  enable = false,
-                },
-              },
-            },
-          }
-        end,
-      }
-
-      local mason_config = require('mason-lspconfig')
-      mason_config.setup {
-        automatic_installation = true,
-        handlers = handlers,
-        ensure_installed = {},
-      }
-    end,
-  },
-  { -- Lua LSP for Neovim config
-    'folke/neodev.nvim',
     config = true,
   },
-  { -- LSP status
-    'j-hui/fidget.nvim',
-    event = 'BufRead',
-    tag = 'legacy', -- FIXME: fidget is being rewritten (update when it's ready)
-    config = function()
-      require('fidget').setup {
-        text = {
-          spinner = 'dots',
-        },
-      }
-    end,
+  { -- Lua LSP for Neovim config
+    'folke/lazydev.nvim',
+    ft = 'lua',
+    config = true,
   },
 }
 
