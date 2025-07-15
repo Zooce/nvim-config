@@ -1,3 +1,0 @@
-return {
-  "Zooce/indomitable.nvim",
-}
