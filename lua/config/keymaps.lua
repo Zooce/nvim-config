@@ -54,5 +54,3 @@ helpers.keymap({ 'v', 'x' }, '<leader>s', ':sort<CR>', 'Sort lines')
 
 helpers.keymap({ 'n', 'v' }, '<S-ScrollWheelUp>', '5z<Left>', 'Horizontal scroll left')
 helpers.keymap({ 'n', 'v' }, '<S-ScrollWheelDown>', '5z<Right>', 'Horizontal scroll right')
-
--- vim: ts=2 sts=2 sw=2 et

@@ -73,5 +73,3 @@ vim.opt.listchars = { tab = '> ', trail = '·' }
 for k, v in pairs(options) do
   vim.o[k] = v
 end
-
--- vim: ts=2 sts=2 sw=2 et
