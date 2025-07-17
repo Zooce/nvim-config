@@ -1,9 +1,5 @@
 local helpers = require 'helpers'
 
-vim.keymap.set({ 'n', 'v' }, '<space>', '<nop>', { silent = true })
-vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
-vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
-
 -- credit to https://www.reddit.com/r/neovim/comments/1335pfc/comment/jiaagyi/?utm_source=share&utm_medium=web2x&context=3
 local function close_float()
   local inactive_wins = vim.fn.filter(vim.api.nvim_list_wins(), function(_, v)
@@ -21,6 +17,9 @@ end
 local function next()
   vim.diagnostic.jump({ count = 1 })
 end
+
+vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 helpers.nmap('<M-j>', ':m .+1<CR>==', 'Move line down')
 helpers.nmap('<M-k>', ':m .-2<CR>==', 'Move line up')
 helpers.nmap('[e', prev, 'Goto previous diagnostic')
@@ -35,6 +34,10 @@ helpers.nmap('<leader>ws', ':split<CR>', 'Split window horizontally')
 helpers.nmap('<leader>wo', ':only<CR>', 'Only show current window')
 helpers.nmap('<leader>wq', ':quit<CR>', 'Quit current window')
 helpers.nmap('<leader>w=', ':wincmd =<CR>', 'Equal window sizes')
+vim.keymap.set("n", "<leader>wh", "<C-w>h", { noremap = true, silent = true, desc = "Goto window left" })
+vim.keymap.set("n", "<leader>wj", "<C-w>j", { noremap = true, silent = true, desc = "Goto window down" })
+vim.keymap.set("n", "<leader>wk", "<C-w>k", { noremap = true, silent = true, desc = "Goto window up" })
+vim.keymap.set("n", "<leader>wl", "<C-w>l", { noremap = true, silent = true, desc = "Goto window right" })
 helpers.nmap('<F1>', 'q')
 helpers.nmap('q', '<nop>')
 
@@ -51,5 +54,6 @@ helpers.keymap({ 'v', 'x' }, '<M-j>', ":m '>+1<CR>gv=gv", 'Move selection down')
 helpers.keymap({ 'v', 'x' }, '<M-k>', ":m '<-2<CR>gv=gv", 'Move selection up')
 helpers.keymap({ 'v', 'x' }, '<leader>s', ':sort<CR>', 'Sort lines')
 
+vim.keymap.set({ 'n', 'v' }, '<space>', '<nop>', { silent = true })
 helpers.keymap({ 'n', 'v' }, '<S-ScrollWheelUp>', '5z<Left>', 'Horizontal scroll left')
 helpers.keymap({ 'n', 'v' }, '<S-ScrollWheelDown>', '5z<Right>', 'Horizontal scroll right')
