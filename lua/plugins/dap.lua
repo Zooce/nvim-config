@@ -74,7 +74,7 @@ return {
 
       -- keymaps
       local dnmap = function(k, f, d)
-        require('helpers').nmap(k, f, 'DAP: ' .. d)
+        vim.keymap.set("n", k, f, { desc = "DAP: " .. d, noremap = true, silent = true })
       end
       dnmap('<F5>', dap.continue, 'Start/Continue')
       dnmap('<F6>', dap.step_over, 'Step over')

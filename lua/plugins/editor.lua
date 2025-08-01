@@ -35,6 +35,7 @@ return {
   { -- colorscheme
     'Zooce/indomitable.nvim',
     enabled = true,
+    -- dir = '~/code/indomitable.nvim', -- uncomment to use local version and make sure to point to the right directory, this is just an example because I always forget
     lazy = false,
     priority = 1000,
     config = function()
