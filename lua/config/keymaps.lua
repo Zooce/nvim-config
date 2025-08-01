@@ -20,6 +20,8 @@ end
 
 vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+vim.keymap.set("n", "<Down>", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+vim.keymap.set("n", "<Up>", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set("i", "<Down>", "<C-o>gj", { noremap = true, silent = true });
 vim.keymap.set("i", "<Up>", "<C-o>gk", { noremap = true, silent = true });
 helpers.nmap("<M-j>", ":m .+1<CR>==", "Move line down")
@@ -44,6 +46,7 @@ helpers.nmap("<F1>", "q")
 helpers.nmap("q", "<nop>")
 
 helpers.vmap("p", '"_dP', "Keep clipboard after pasting over a selection")
+vim.keymap.set("x", "p", function() return vim.fn.col(".") == vim.fn.col("$") - 1 and '"_dp' or '"_dP' end, { expr = true })
 helpers.vmap("<", "<gv", "Stay in indent mode after left indent")
 helpers.vmap(">", ">gv", "Stay in indent mode after right indent")
 
