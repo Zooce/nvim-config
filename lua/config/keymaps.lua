@@ -20,8 +20,8 @@ vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = tr
 vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set("n", "<Down>", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 vim.keymap.set("n", "<Up>", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
-vim.keymap.set("i", "<Down>", "<C-o>gj", { noremap = true, silent = true });
-vim.keymap.set("i", "<Up>", "<C-o>gk", { noremap = true, silent = true });
+vim.keymap.set("i", "<Down>", "<C-o>gj", { noremap = true, silent = true })
+vim.keymap.set("i", "<Up>", "<C-o>gk", { noremap = true, silent = true })
 vim.keymap.set("n", "<M-j>", ":m .+1<CR>==", { noremap = true, silent = true, desc = "Move line down" })
 vim.keymap.set("n", "<M-k>", ":m .-2<CR>==", { noremap = true, silent = true, desc = "Move line up" })
 vim.keymap.set("n", "[e", prev, { noremap = true, silent = true, desc = "Goto previous diagnostic" })
