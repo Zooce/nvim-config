@@ -128,7 +128,7 @@ vim.keymap.set("n", "<Leader>bd", bufdel)
 
 -- macros
 vim.keymap.set("n", "<F1>", "q")
-vim.keymap.set("n", "q", "<nop>")
+vim.keymap.set("n", "q", "<Nop>")
 
 -- paste
 local function smartpaste()
@@ -214,6 +214,11 @@ vim.keymap.set("n", "<C-\\>", toggle_term)
 -- trim trailing whitespace
 vim.keymap.set("n", "<Leader><Del>", ":%s/\\s\\+$//e<CR>")
 
+-- finder
+local finder = require("finder")
+vim.keymap.set("n", "<Leader>/f", function() finder.open("files") end)
+vim.keymap.set("n", "<Leader>/g", function() finder.open("grep") end)
+
 -- ================================================================================
 -- AUTO COMMANDS
 -- ================================================================================
@@ -227,9 +232,3 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   group = highlight_group,
   pattern = '*',
 })
-
--- ================================================================================
--- PLUGINS
--- ================================================================================
-
-require("fuzzy")
