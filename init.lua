@@ -260,6 +260,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 
 local servers = {
     "luals",
+    "pyright",
     "zls",
 }
 vim.lsp.enable(servers)
