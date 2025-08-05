@@ -8,69 +8,24 @@
 --
 -- The results buffer stores some state variables:
 --  * mode = either "files" or "grep" -- tells us what kind of search we're doing
---  * files = the set of files to query on (only in "files" mode)
 --  * results = the set of matching results
 --      * file = the file this result is tied to
 --      * display = the fancy display string (only in "grep" mode)
 --      * line = the line number in the file (only in "grep" mode)
 --  * selected = the currently selected index in `results`
 
--- This fuzzy scoring gives precedence to longest contiguous match. Nothing super
--- smart but it gives good results.
-local function fuzzy_score(needle, haystack)
-    needle = needle:lower()
-    haystack = haystack:lower()
-    local i = 1
-    local max_streak = 0
-    local current_streak = 0
-    local prev_matched = false
-    for j = 1, #haystack do
-        if haystack:sub(j, j) == needle:sub(i, i) then
-            i = i + 1
-            if prev_matched then
-                current_streak = current_streak + 1
-            else
-                current_streak = 1
-            end
-            if current_streak > max_streak then
-                max_streak = current_streak
-            end
-            prev_matched = true
-            if i > #needle then
-                break
-            end
-        else
-            prev_matched = false
-        end
-    end
-    if i <= #needle then
-        return nil
-    end
-    return max_streak
-end
-
 -- Filter the files list based on the given query string.
 local function fuzzy_files(results_buf, query)
-    local files = vim.api.nvim_buf_get_var(results_buf, "files")
-
-    -- compute the results of the query - all files for empty query
+    local cmd = "fd . -t f"
+    local files = {}
+    if #query > 0 then
+        cmd = cmd .. " | fzf --filter " .. query
+    end
+    local cmdout = vim.fn.system(cmd)
+    files = vim.split(vim.trim(cmdout), "\n")
     local results = {}
     for _, file in ipairs(files) do
-        if #query == 0 then
-            table.insert(results, { file = file })
-        else
-            local score = fuzzy_score(query, file)
-            if score then
-                table.insert(results, { file = file, score = score })
-            end
-        end
-    end
-
-    -- sort by score
-    if #query ~= 0 then
-        table.sort(results, function(a, b)
-            return a.score > b.score
-        end)
+        table.insert(results, { file = file })
     end
 
     -- save the results
@@ -84,15 +39,16 @@ local function fuzzy_files(results_buf, query)
     return buffer_lines
 end
 
-local function grep_files(results_buf, query)
+-- Search files in the current directory for the query.
+local function grep_files(results_buf, regex)
     -- empty query means empty results
-    if #query == 0 then
+    if #regex == 0 then
         vim.api.nvim_buf_set_var(results_buf, "results", {})
         return {}
     end
 
     -- grepity grep
-    local cmdout = vim.fn.system("rg -i -n --no-heading " .. vim.fn.shellescape(query))
+    local cmdout = vim.fn.system("rg -i -n --no-heading " .. vim.fn.shellescape(regex))
     local rg_results = vim.split(vim.trim(cmdout), "\n")
 
     -- parse the rg results
@@ -155,11 +111,6 @@ local function open(mode)
     -- store some state in the results buffer
     vim.api.nvim_buf_set_var(results_buf, "mode", mode)
     vim.api.nvim_buf_set_var(results_buf, "selected", nil)
-    if mode == "files" then
-        local cmdout = vim.fn.system("fd . -t f 2>/dev/null")
-        local files = vim.split(vim.trim(cmdout), "\n")
-        vim.api.nvim_buf_set_var(results_buf, "files", files)
-    end
 
     -- the results buffer is not modifiable (by the user that is)
     vim.api.nvim_buf_set_option(results_buf, "modifiable", false)
