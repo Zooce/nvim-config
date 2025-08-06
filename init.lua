@@ -1,5 +1,9 @@
 -- ================================================================================
+--
+--
 -- OPTIONS
+--
+--
 -- ================================================================================
 
 -- cursor
@@ -20,6 +24,9 @@ vim.opt.swapfile = false
 
 -- theme
 vim.opt.termguicolors = true
+vim.opt.background = "dark"
+vim.g.colors_name = "indomitable"
+require("theme").load()
 
 -- search
 vim.opt.ignorecase = true
@@ -55,14 +62,20 @@ vim.opt.timeoutlen = 4000 -- give me more time to type my keymaps
 vim.opt.clipboard = "unnamedplus" -- use system clipboard
 
 -- status line
+vim.opt.showmode = false -- already shown in the custom status line
 vim.opt.laststatus = 3 -- one global status line TO RULE THEM ALL
+vim.o.statusline = "%!v:lua.require('statusline')()"
 
 -- leader key
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- ================================================================================
+--
+--
 -- KEYMAPS
+--
+--
 -- ================================================================================
 
 -- navigation
@@ -163,13 +176,12 @@ end, { expr = true })
 vim.keymap.set("c", "<Left>", function()
     return vim.fn.pumvisible() == 1 and "<C-e>" or "<Left>"
 end, { expr = true })
--- vim.keymap.srue })
 
 -- terminal
 local term_win = nil
 local term_buf = nil
 -- NOTE it can't be `local` since we're setting up a keybinding to call itself
-function toggle_term()
+function ToggleTerm()
     -- if we've already got a terminal window open....fucking hide it NOW
     if term_win and vim.api.nvim_win_is_valid(term_win) then
         vim.api.nvim_win_hide(term_win)
@@ -196,7 +208,7 @@ function toggle_term()
         term_win = vim.api.nvim_open_win(term_buf, true, win_opts)
     end
     vim.cmd("startinsert")
-    vim.api.nvim_buf_set_keymap(term_buf, "t", "<C-\\>", "<Cmd>lua toggle_term()<CR>", {})
+    vim.api.nvim_buf_set_keymap(term_buf, "t", "<C-\\>", "<Cmd>lua ToggleTerm()<CR>", {})
     -- in case we leave the terminal buffer some other way, then auto-close that bitch
     vim.api.nvim_create_autocmd("BufLeave", {
         buffer = term_buf,
@@ -209,7 +221,7 @@ function toggle_term()
         once = true,
     })
 end
-vim.keymap.set("n", "<C-\\>", toggle_term)
+vim.keymap.set("n", "<C-\\>", ToggleTerm)
 
 -- trim trailing whitespace
 vim.keymap.set("n", "<Leader><Del>", ":%s/\\s\\+$//e<CR>")
@@ -235,13 +247,24 @@ vim.keymap.set("n", "<Leader>/f", function() finder.open("files") end)
 vim.keymap.set("n", "<Leader>/g", function() finder.open("grep") end)
 
 -- lsp
-vim.keymap.set("n", "K", function() vim.lsp.buf.hover({ border = "single" }) end)
 vim.keymap.set("n", "]e", function() vim.diagnostic.jump({ count = 1 }) end)
 vim.keymap.set("n", "[e", function() vim.diagnostic.jump({ count = -1 }) end)
+vim.keymap.set("n", "K", function() vim.lsp.buf.hover({ border = "single" }) end)
+vim.keymap.set("n", "gd", vim.lsp.buf.definition) -- TODO: open in finder if multiple results
+vim.keymap.set("n", "<Leader>/r", vim.lsp.buf.references) -- TODO: open in finder
 vim.keymap.set("n", "<leader>e", function() vim.diagnostic.open_float({ border = "single" }) end)
+vim.keymap.set("n", "<Leader>rn", vim.lsp.buf.rename)
+vim.keymap.set("n", "<Leader>.", vim.lsp.buf.code_action)
+
+-- theme
+vim.keymap.set("n", "<Leader>i", ":Inspect<CR>")
 
 -- ================================================================================
+--
+--
 -- AUTO COMMANDS
+--
+--
 -- ================================================================================
 
 -- highlight yank
@@ -255,7 +278,11 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 })
 
 -- ================================================================================
+--
+--
 -- LSP
+--
+--
 -- ================================================================================
 
 local servers = {
