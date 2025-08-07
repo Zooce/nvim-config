@@ -21,7 +21,10 @@ return {
             },
         },
     },
+    before_init = function(_, _)
+        vim.notify_once("Starting Pyright LSP...")
+    end,
     on_attach = function(_, _)
-        vim.notify("Pyright LSP attached")
+        vim.notify_once("Pyright LSP attached")
     end,
 }

@@ -289,5 +289,7 @@ local servers = {
     "luals",
     "pyright",
     "zls",
+    "omnisharp",
+    "ruby_lsp",
 }
 vim.lsp.enable(servers)

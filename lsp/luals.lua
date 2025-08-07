@@ -25,7 +25,10 @@ return {
             },
         },
     },
+    before_init = function(_, _)
+        vim.notify_once("Starting Lua LSP...")
+    end,
     on_attach = function(_, _)
-        vim.notify("Lua LSP attached")
+        vim.notify_once("Lua LSP attached")
     end,
 }

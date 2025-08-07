@@ -20,7 +20,10 @@ return {
             semantic_tokens = "partial",
         }
     },
+    before_init = function(_, _)
+        vim.notify_once("Starting ZLS LSP...")
+    end,
     on_attach = function(_, _)
-        vim.notify("ZLS LSP attached")
+        vim.notify_once("ZLS LSP attached")
     end,
 }
