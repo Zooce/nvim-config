@@ -19,7 +19,7 @@ local function fuzzy_files(results_buf, query)
     local cmd = "fd . -t f --hidden -E .git"
     local files = {}
     if #query > 0 then
-        cmd = cmd .. " | fzf --filter " .. query
+        cmd = cmd .. " | fzf --scheme=path -f " .. query
     end
     local cmdout = vim.fn.system(cmd)
     files = vim.split(vim.trim(cmdout), "\n")
@@ -35,6 +35,47 @@ local function fuzzy_files(results_buf, query)
     local buffer_lines = {}
     for _, item in ipairs(results) do
         table.insert(buffer_lines, item.file)
+    end
+    return buffer_lines
+end
+
+local function fuzzy_references(results_buf, query)
+    local references = vim.api.nvim_buf_get_var(results_buf, "references")
+    local results = {}
+
+    if #references == 0 or #query == 0 then
+        results = references
+    else
+        -- we only need to fuzzy on the file names, and to reduce the work `fzf` needs
+        -- to do, we're not going to send duplicate file names to it
+        local seen = {}
+        local files = {}
+        for _, reference in ipairs(references) do
+            if not seen[reference.file] then
+                seen[reference.file] = true
+                table.insert(files, reference.file)
+            end
+        end
+        local fzf_input = table.concat(files, "\n")
+        local cmd = "printf " .. vim.fn.shellescape(fzf_input) .. " | fzf --scheme=path -f " .. query
+        local cmdout = vim.fn.system(cmd)
+        files = vim.split(vim.trim(cmdout), "\n")
+        for _, reference in ipairs(references) do
+            for _, file in ipairs(files) do
+                if reference.file == file then
+                    table.insert(results, reference)
+                    break
+                end
+            end
+        end
+    end
+
+    vim.api.nvim_buf_set_var(results_buf, "results", references)
+
+    -- take the display property for the result buffer
+    local buffer_lines = {}
+    for _, item in ipairs(results) do
+        table.insert(buffer_lines, item.display)
     end
     return buffer_lines
 end
@@ -80,7 +121,9 @@ local function update_results(results_buf, query)
     local buffer_lines = {}
     if mode == "files" then
         buffer_lines = fuzzy_files(results_buf, query)
-    else
+    elseif mode == "references" then
+        buffer_lines = fuzzy_references(results_buf, query)
+    elseif mode == "grep" then
         buffer_lines = grep_files(results_buf, query)
     end
 
@@ -104,13 +147,16 @@ local function update_results(results_buf, query)
 end
 
 -- Open two windows, one for an input and one for the matching results.
-local function open(mode)
+local function open(mode, opts)
     local input_buf = vim.api.nvim_create_buf(false, true)
     local results_buf = vim.api.nvim_create_buf(false, true)
 
     -- store some state in the results buffer
     vim.api.nvim_buf_set_var(results_buf, "mode", mode)
     vim.api.nvim_buf_set_var(results_buf, "selected", nil)
+    if opts and opts.references then
+        vim.api.nvim_buf_set_var(results_buf, "references", opts.references)
+    end
 
     -- the results buffer is not modifiable (by the user that is)
     vim.api.nvim_buf_set_option(results_buf, "modifiable", false)
@@ -236,6 +282,42 @@ local function open(mode)
     vim.cmd("startinsert")
 end
 
+local function async_open_references()
+    local bufnr = vim.api.nvim_get_current_buf()
+    local win = vim.api.nvim_get_current_win()
+
+    vim.lsp.buf_request_all(bufnr, "textDocument/references", function(client)
+        local params = vim.lsp.util.make_position_params(win, client.offset_encoding)
+        params.context = { includeDeclarations = true }
+        return params
+    end, function(responses)
+        local results = {}
+        for _, response in pairs(responses) do
+            if response.result then
+                for _, location in ipairs(response.result) do
+                    local file = vim.fn.fnamemodify(vim.uri_to_fname(location.uri or location.targetUri), ":.")
+                    local range = location.range or location.targetSelectionRange
+                    local lnum = range.start.line + 1
+                    local buf = vim.fn.bufadd(file)
+                    vim.fn.bufload(buf)
+                    local text = vim.api.nvim_buf_get_lines(buf, lnum - 1, lnum, false)[1] or ""
+                    local display = file .. ":" .. lnum .. "  " .. vim.trim(text)
+                    table.insert(results, { display = display, file = file, line = lnum })
+                end
+            end
+            if response.error then
+                vim.notify(response.error.message)
+            end
+        end
+        if #results == 0 then
+            vim.notify("No references")
+            return
+        end
+        open("references", { references = results })
+    end)
+end
+
 local M = {}
 M.open = open
+M.async_open_references = async_open_references
 return M

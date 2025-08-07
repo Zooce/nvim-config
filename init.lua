@@ -251,7 +251,7 @@ vim.keymap.set("n", "]e", function() vim.diagnostic.jump({ count = 1 }) end)
 vim.keymap.set("n", "[e", function() vim.diagnostic.jump({ count = -1 }) end)
 vim.keymap.set("n", "K", function() vim.lsp.buf.hover({ border = "single" }) end)
 vim.keymap.set("n", "gd", vim.lsp.buf.definition) -- TODO: open in finder if multiple results
-vim.keymap.set("n", "<Leader>/r", vim.lsp.buf.references) -- TODO: open in finder
+vim.keymap.set("n", "<Leader>/r", finder.async_open_references)
 vim.keymap.set("n", "<leader>e", function() vim.diagnostic.open_float({ border = "single" }) end)
 vim.keymap.set("n", "<Leader>rn", vim.lsp.buf.rename)
 vim.keymap.set("n", "<Leader>.", vim.lsp.buf.code_action)
