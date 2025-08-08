@@ -314,6 +314,15 @@ vim.api.nvim_create_autocmd("FileType", {
     end,
 })
 
+-- Markdown files should wrap text
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "markdown",
+    callback = function()
+        vim.opt.wrap = true
+        vim.opt.linebreak = true
+    end,
+})
+
 -- ================================================================================
 --
 --
