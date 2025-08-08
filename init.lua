@@ -343,6 +343,7 @@ vim.api.nvim_create_autocmd("WinLeave", {
 --
 -- ================================================================================
 
+-- configuration for each of these are in their own files at `lsp/<name>.lua`
 local servers = {
     "luals",
     "pyright",
