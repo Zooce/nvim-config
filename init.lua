@@ -263,6 +263,34 @@ vim.keymap.set("n", "<Leader>i", ":Inspect<CR>")
 -- ================================================================================
 --
 --
+-- PLUGINS -- !!! STAY AWAY !!!
+--
+--
+-- ================================================================================
+
+-- The only reason I have `nvim-treesitter` is because it takes care of installing
+-- tree-sitter grammars which involves:
+-- * downloading the `tree-sitter-<language>` repo
+-- * "generating" the parser for <language> using `tree-sitter generate ...`
+-- * "compiling" the parser for <language> using`tree-sitter build ...`
+-- * copying the necessary files to Neovim's paths
+--
+-- Note that the `main` branch for nvim-treesitter is the new version which no
+-- longer handles "modules" or fancy "features" like incremental selection. Those
+-- will have to come from somewhere else now -- like nvim-treesitter-textobjects.
+vim.pack.add({
+    {
+        src = "https://github.com/nvim-treesitter/nvim-treesitter",
+        version = "main",
+    },
+})
+-- keep tree-sitter parsers up-to-date
+local nvim_treesitter = require("nvim-treesitter")
+nvim_treesitter.update()
+
+-- ================================================================================
+--
+--
 -- AUTO COMMANDS
 --
 --
