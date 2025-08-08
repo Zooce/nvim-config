@@ -6,10 +6,6 @@
 --
 -- ================================================================================
 
--- cursor
-vim.opt.cursorline = true -- highlight the current line
-vim.opt.cursorcolumn = true -- highlight the current column
-
 -- gutter
 vim.opt.signcolumn = "yes"
 vim.opt.number = true
@@ -320,6 +316,22 @@ vim.api.nvim_create_autocmd("FileType", {
     callback = function()
         vim.opt.wrap = true
         vim.opt.linebreak = true
+    end,
+})
+
+-- Only show cursor line/column for active window
+vim.api.nvim_create_autocmd("WinEnter", {
+    pattern = "*",
+    callback = function()
+        vim.opt.cursorline = true
+        vim.opt.cursorcolumn = true
+    end,
+})
+vim.api.nvim_create_autocmd("WinLeave", {
+    pattern = "*",
+    callback = function()
+        vim.opt.cursorline = false
+        vim.opt.cursorcolumn = false
     end,
 })
 
