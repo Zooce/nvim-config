@@ -306,6 +306,14 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   pattern = '*',
 })
 
+-- treesitter highlights
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "*",
+    callback = function()
+        vim.treesitter.start()
+    end,
+})
+
 -- ================================================================================
 --
 --
