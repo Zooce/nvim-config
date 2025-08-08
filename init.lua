@@ -12,6 +12,7 @@ vim.opt.cursorcolumn = true -- highlight the current column
 
 -- gutter
 vim.opt.signcolumn = "yes"
+vim.opt.number = true
 
 -- files and buffers
 vim.opt.fileencoding = "utf-8"
