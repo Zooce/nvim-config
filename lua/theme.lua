@@ -203,6 +203,7 @@ local theme_specs = {
             "markdownBlockquote",
             "markdownItelic",
             "markdownBold",
+            "rubyKeywordAsMethod",
         },
     },
     String = {
@@ -258,6 +259,7 @@ local theme_specs = {
             "@keyword.conditional.angular",
             "@variable.scss",
             "@variable.parameter.scss",
+            "erubyDelimiter",
         },
     },
 
