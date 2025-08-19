@@ -293,13 +293,13 @@ nvim_treesitter.update()
 -- ================================================================================
 
 -- highlight yank
-local yank_highlight = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
-vim.api.nvim_create_autocmd('TextYankPost', {
+local yank_highlight = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
+vim.api.nvim_create_autocmd("TextYankPost", {
   callback = function()
     vim.highlight.on_yank()
   end,
   group = yank_highlight,
-  pattern = '*',
+  pattern = "*",
 })
 
 -- treesitter highlights
