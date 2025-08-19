@@ -196,6 +196,7 @@ local theme_specs = {
             "@tag.attribute",
             "htmlArg",
             "@type.css",
+            "@property.css",
             "@type.scss",
             "@markup.quote.markdown",
             "@markup.italic.markdown_inline",
@@ -260,6 +261,7 @@ local theme_specs = {
             "@variable.scss",
             "@variable.parameter.scss",
             "erubyDelimiter",
+            "@keyword.embedded_template",
         },
     },
 
