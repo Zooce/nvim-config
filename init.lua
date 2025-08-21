@@ -305,7 +305,14 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 -- treesitter highlights
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "*",
-    callback = function()
+    callback = function(args)
+        local filetype = args.match
+        local lang = vim.treesitter.language.get_lang(filetype)
+        if not lang then
+            return
+        end
+
+        nvim_treesitter.install({ lang }):wait(300000) -- 5 minutes max
         vim.treesitter.start()
     end,
 })
