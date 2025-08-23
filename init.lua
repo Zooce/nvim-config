@@ -357,5 +357,6 @@ local servers = {
     "zls",
     "omnisharp",
     "ruby_lsp",
+    "phpactor",
 }
 vim.lsp.enable(servers)
