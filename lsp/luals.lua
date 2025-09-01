@@ -1,3 +1,4 @@
+-- Installed with `yay -S --needed --noconfirm lua-language-server`
 return {
     name = "luals",
     cmd = { "lua-language-server" },
