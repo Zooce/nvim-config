@@ -13,7 +13,7 @@ local options = {
   -- [[ Context ]]
   cursorline = true, -- highlight the current line
   cursorcolumn = true, -- highlight the current column
-  -- number = true, -- show line numbers
+  number = true, -- show line numbers
   -- relativenumber = true, -- show relative line numbers
   scrolloff = 1, -- always show at least X lines around the cursor
   sidescrolloff = 1, -- always show at least X characters around the cursor
