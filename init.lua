@@ -297,6 +297,15 @@ vim.pack.add({
 local nvim_treesitter = require("nvim-treesitter")
 nvim_treesitter.update()
 
+-- This plugin is actually awesome, it let's me interact with the file system in a
+-- vim buffer.
+vim.pack.add({
+    {
+        src = "https://github.com/stevearc/oil.nvim",
+    },
+})
+require("oil").setup()
+
 -- ================================================================================
 --
 --
@@ -322,6 +331,18 @@ vim.api.nvim_create_autocmd("FileType", {
         local filetype = args.match
         local lang = vim.treesitter.language.get_lang(filetype)
         if not lang then
+            return
+        end
+
+        local found = false
+        local available_langs = nvim_treesitter.get_available()
+        for _, available_lang in ipairs(available_langs) do
+            if lang == available_lang then
+                found = true
+                break
+            end
+        end
+        if not found then
             return
         end
 

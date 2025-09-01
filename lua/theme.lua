@@ -245,6 +245,7 @@ local theme_specs = {
             "@markup.link.url.markdown",
             "markdownLinkUrl",
             "markdownId",
+            "OilDir",
         },
     },
     Special = {
