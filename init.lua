@@ -314,6 +314,9 @@ require("oil").setup({ columns = {} })
 --
 -- ================================================================================
 
+-- ensure auto/smart indentation is enabled
+vim.cmd("filetype indent on")
+
 -- highlight yank
 local yank_highlight = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
 vim.api.nvim_create_autocmd("TextYankPost", {
@@ -348,6 +351,7 @@ vim.api.nvim_create_autocmd("FileType", {
 
         nvim_treesitter.install({ lang }):wait(300000) -- 5 minutes max
         vim.treesitter.start()
+        vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
     end,
 })
 
