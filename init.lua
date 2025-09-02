@@ -317,11 +317,11 @@ require("oil").setup({ columns = {} })
 -- highlight yank
 local yank_highlight = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
 vim.api.nvim_create_autocmd("TextYankPost", {
+  pattern = "*",
+  group = yank_highlight,
   callback = function()
     vim.highlight.on_yank()
   end,
-  group = yank_highlight,
-  pattern = "*",
 })
 
 -- treesitter highlights
