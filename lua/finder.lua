@@ -16,7 +16,7 @@
 
 -- Filter the files list based on the given query string.
 local function fuzzy_files(results_buf, query)
-    local cmd = "fd . -t f --hidden -E .git -E node_modules -E vendor"
+    local cmd = "fd . -I -t f --hidden -E .git -E node_modules -E vendor"
     local files = {}
     if #query > 0 then
         cmd = cmd .. " | fzf --scheme=path -f " .. query
