@@ -364,6 +364,13 @@ vim.api.nvim_create_autocmd("FileType", {
     end,
 })
 
+-- Set commentstring for Blade temples
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "blade",
+    callback = function()
+        vim.bo.commentstring = "<!-- %s -->"
+    end,
+})
 -- Only show cursor line/column for active window
 vim.api.nvim_create_autocmd("WinEnter", {
     pattern = "*",
