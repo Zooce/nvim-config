@@ -14,6 +14,8 @@
 --      * line = the line number in the file (only in "grep" mode)
 --  * selected = the currently selected index in `results`
 
+local M = {}
+
 -- Filter the files list based on the given query string.
 local function fuzzy_files(results_buf, query)
     local cmd = "fd . -I -t f --hidden -E .git -E node_modules -E vendor"
@@ -147,7 +149,7 @@ local function update_results(results_buf, query)
 end
 
 -- Open two windows, one for an input and one for the matching results.
-local function open(mode, opts)
+function M.open(mode, opts)
     local input_buf = vim.api.nvim_create_buf(false, true)
     local results_buf = vim.api.nvim_create_buf(false, true)
 
@@ -282,7 +284,7 @@ local function open(mode, opts)
     vim.cmd("startinsert")
 end
 
-local function async_open_references()
+function M.async_open_references()
     local bufnr = vim.api.nvim_get_current_buf()
     local win = vim.api.nvim_get_current_win()
 
@@ -317,7 +319,4 @@ local function async_open_references()
     end)
 end
 
-local M = {}
-M.open = open
-M.async_open_references = async_open_references
 return M

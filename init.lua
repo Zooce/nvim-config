@@ -135,6 +135,7 @@ local function bufdel()
     end
 end
 vim.keymap.set("n", "<Leader>bd", bufdel)
+vim.keymap.set('n', '<leader>rf', require("file-rename").rename_file)
 
 -- macros
 vim.keymap.set("n", "<F1>", "q")
