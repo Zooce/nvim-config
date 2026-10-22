@@ -270,6 +270,9 @@ vim.keymap.set("n", "<Leader>.", vim.lsp.buf.code_action)
 -- theme
 vim.keymap.set("n", "<Leader>i", ":Inspect<CR>")
 
+-- local tags = require("tag-rename")
+-- vim.keymap.set("n", "<Leader>rt", tags.rename)
+
 -- ================================================================================
 --
 --
