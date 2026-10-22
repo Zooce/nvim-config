@@ -273,43 +273,6 @@ vim.keymap.set("n", "<Leader>i", ":Inspect<CR>")
 -- ================================================================================
 --
 --
--- PLUGINS -- !!! STAY AWAY !!!
---
---
--- ================================================================================
-
--- The only reason I have `nvim-treesitter` is because it takes care of installing
--- tree-sitter grammars which involves:
--- * downloading the `tree-sitter-<language>` repo
--- * "generating" the parser for <language> using `tree-sitter generate ...`
--- * "compiling" the parser for <language> using`tree-sitter build ...`
--- * copying the necessary files to Neovim's paths
---
--- Note that the `main` branch for nvim-treesitter is the new version which no
--- longer handles "modules" or fancy "features" like incremental selection. Those
--- will have to come from somewhere else now -- like nvim-treesitter-textobjects.
-vim.pack.add({
-    {
-        src = "https://github.com/nvim-treesitter/nvim-treesitter",
-        version = "main",
-    },
-})
--- keep tree-sitter parsers up-to-date
-local nvim_treesitter = require("nvim-treesitter")
-nvim_treesitter.update()
-
--- This plugin is actually awesome, it let's me interact with the file system in a
--- vim buffer.
-vim.pack.add({
-    {
-        src = "https://github.com/stevearc/oil.nvim",
-    },
-})
-require("oil").setup({ columns = {} })
-
--- ================================================================================
---
---
 -- AUTO COMMANDS
 --
 --
@@ -328,31 +291,11 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   end,
 })
 
--- treesitter highlights
+-- ensure wrapping is turned off by default (vim.opt.wrap = false doesn't always work)
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "*",
-    callback = function(args)
-        local filetype = args.match
-        local lang = vim.treesitter.language.get_lang(filetype)
-        if not lang then
-            return
-        end
-
-        local found = false
-        local available_langs = nvim_treesitter.get_available()
-        for _, available_lang in ipairs(available_langs) do
-            if lang == available_lang then
-                found = true
-                break
-            end
-        end
-        if not found then
-            return
-        end
-
-        nvim_treesitter.install({ lang }):wait(300000) -- 5 minutes max
-        vim.treesitter.start()
-        vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+    callback = function()
+        vim.opt_local.wrap = false
     end,
 })
 
