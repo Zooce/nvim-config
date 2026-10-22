@@ -403,7 +403,5 @@ local servers = {
     "zls",
     "omnisharp",
     "ruby_lsp",
-    "phpactor",
-    -- "intelephense",
 }
 vim.lsp.enable(servers)
